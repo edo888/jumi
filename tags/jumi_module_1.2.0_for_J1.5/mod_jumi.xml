@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+	<name>Jumi</name>
+	<author>Martin Hájek</author>
+	<creationDate>March 2008</creationDate>
+	<copyright>(c) 2006 - 2008 Martin Hajek. All rights reserved.</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>admin@vedeme.cz</authorEmail>
+	<authorUrl>jumi.vedeme.cz</authorUrl>
+	<version>1.2.0</version>
+	<description>
+   Jumi module for Joomla! includes into a module position any file.
+   In an addition it can pass into the included *.php file any number of argument values.
+   There is also a compatible Jumi plugin that includes the same files into Joomla! articles.
+   Jumi manuals, demo, tips and tricks and snippets can be found at jumi.vedeme.cz
+   </description>
+	<files>
+      <filename module="mod_jumi">mod_jumi.php</filename>
+      <filename>index.html</filename>
+      <filename>helper.php</filename>
+      <filename>jumi_demo.php</filename>
+      <filename>tmpl/default.php</filename>
+      <filename>tmpl/index.html</filename>
+	</files>
+	<params>
+		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+		<param name="@spacer" type="spacer" default="" label="" description="" />
+		<param name="default_absolute_path" type="text" size ="97" default="" label="Default Absolute Path" description="Optional Default Absolute Path to the included file. If left blank then it is identical to Joomla! root directory. No slash at the end." />
+		<param name="file_pathname" type="text" size ="97" default="modules/mod_jumi/jumi_demo.php" label="File Pathname" description="The pathname of the file to be included. The pathname is relative with respect to Default Absolute Path." />
+		<param name="php_args" type="textarea" default="[first][second] You can put anything out of the brackets [and third]" label="Argument Values" description="Any number of values to be passed into the included php file. Each value must be contained in [ ] brackets. Everything outside the brackets is ignored. Argument values can be referrenced by $jumi[] array in an included php file." cols="70" rows="7" />
+		<param name="notepad" type="textarea" default="Put your notes here ..." label="Notepad" description="Your notes, reminders, etc." cols="70" rows="7" /> 
+	</params>
+	<params group="advanced">
+		<param name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this module">
+			<option value="1">Use global</option>
+			<option value="0">No caching</option>
+		</param>
+		<param name="cache_time" type="text" default="900" label="Cache Time" description="The time before the module is recached" />
+	</params>
+</install>
