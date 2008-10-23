@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<mosinstall type="module">
+	<name>Jumi</name>
+	<author>Martin Hajek</author>
+	<creationDate>March 2008</creationDate>
+	<copyright>(c) 2006 - 2008 Martin Hajek. All rights reserved.</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>admin@vedeme.cz</authorEmail>
+	<authorUrl>jumi.vedeme.cz</authorUrl>
+	<version>1.2.0</version>
+	<description><![CDATA[
+	Jumi module for Joomla! and Mambo includes into a module position any file.<br />In an addition it can pass into the included *.php file any number of argument values.<br />There is also a compatible Jumi plugin that includes the same files into Joomla! articles.<br />Jumi manuals, demo, tips and tricks and snippets can be found at <a href="http://jumi.vedeme.cz" target="_blank">jumi.vedeme.cz</a>
+	]]></description>
+	<files>
+		<filename module="mod_jumi">mod_jumi.php</filename>
+		<filename>jumi_demo.php</filename>
+	</files>
+	<params>
+		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="A suffix to be applied to the css class of the module (table.moduletable), this allows individual module styling" />
+		<param name="default_absolute_path" type="text" size ="97" default="" label="Default Absolute Path" description="Optional Default Absolute Path to the included file. If left blank then it is identical to Joomla! root directory. No slash at the end." />
+		<param name="file_pathname" type="text" size ="97" default="modules/jumi_demo.php" label="File Pathname" description="The pathname of the file to be included. The pathname is relative with respect to Default Absolute Path." />
+		<param name="php_args" type="textarea" default="[first][second] notice you can put anything out of the brackets [and third]" label="Argument Values" description="Any number of values to be passed into the included php file. Each value must be contained in [ ] brackets. Everything outside the brackets is ignored. Argument values can be referrenced by $jumi[] array in an included php file." cols="70" rows="7" />
+		<param name="notepad" type="textarea" default="Put your notes here ..." label="Notepad" description="Your notes, reminders, etc." cols="70" rows="7" />    
+	</params>
+</mosinstall>
+
