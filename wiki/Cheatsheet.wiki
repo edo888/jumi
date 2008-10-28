@@ -2,5 +2,5 @@
 http://jumi.vedeme.cz/images/stories/jumi_cheatsheet.png
 == Technical remark  ==
 Custom codes are included into Joomla! content via following php codes:
-  * files: `include"filepathname");`
-  * written codes: `eval("?".$code");`
+  * files: `include("filepathname");`
+  * written codes: `eval("?>".$code");`
