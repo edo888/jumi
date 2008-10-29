@@ -1,21 +1,47 @@
 <?php
 /**
-* @version   $Id: default.php 1.2.0
-* @package   Joomla 1.5, Jumi module for Joomla 1.5
-* @copyright Copyright (c) 2008 Martin Hájek. All rights reserved.
-* @license   GNU/GPL
+* @version $Id$
+* @package Joomla! 1.5
+* @copyright (c) 2008 Martin Hajek
+* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 */
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
-//if file is readable then include it
-if (is_readable($incl_file)) {
-   include($incl_file);
+
+function getCodeStored($source){ //returns code stored in the database or null.
+	$database  = &JFactory::getDBO();
+	//$user      = &JFactory::getUser();
+	//$database->setQuery("select custom_script from #__jumi where id = '{$source}' and access <= {$user->gid} and published = 1");
+	$database->setQuery("select custom_script from #__jumi where id = $source");
+	return $database->loadResult();
 }
-else {
-   echo "The file <b>".$incl_file."</b> cannot be included!<br />It does not exist or is not readable.";
+
+if ($code_written.$storage_source != ""){ //something to show
+  if ($code_written != ""){ //if code written
+		eval ('?>'.$code_written); //include custom script written
+	}
+	if ($storage_source != ""){ // if record id or filepathname
+		if (is_int($storage_source)){ //it is record id
+			$code_written = getCodeStored($storage_source);
+			if ($code_written != null) {
+				eval ('?>'.$code_written); //include custom script written
+			}
+			else {
+				echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD',$storage_source).'</div>';
+			}
+		}
+		else { //it is file
+			if (is_readable($storage_source)) {
+				include($storage_source); //include file
+			}
+			else {
+			  echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE',$storage_source).'</div>';
+			}
+		}
+	}
+}
+else { //nothing to show
+	echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_CONTENT').'</div>';
 }
 ?>
-
-
-

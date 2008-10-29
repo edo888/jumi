@@ -1,16 +1,18 @@
 <?php
 /**
-* @version   $Id: mod_jumi.php 1.2.0
-* @package   Joomla 1.5, Jumi module for Joomla 1.5
-* @copyright Copyright (c) 2008 Martin Hájek. All rights reserved.
-* @license   GNU/GPL, see LICENSE.php
+* @version $Id$
+* @package Joomla! 1.5
+* @copyright (c) 2008 Martin Hajek
+* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 */
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
-// Include the syndicate functions only once
+// Include the functions only once
 require_once (dirname(__FILE__).DS.'helper.php');
 
-$jumi = modJumiHelper::getJumiArray($params);
-$incl_file = modJumiHelper::getFilePathname($params);
+$code_written = modJumiHelper::getCodeWritten($params); //code written or ""
+$storage_source = modJumiHelper::getStorageSource($params); //filepathname or record id or ""
+
 require(JModuleHelper::getLayoutPath('mod_jumi'));
+?>

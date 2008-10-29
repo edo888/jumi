@@ -1,16 +1,17 @@
 Jumi module for Joomla 1.5.x
 Developer's web pages: http://jumi.vedeme.cz
+Downloads: http://jumi.vedeme.cz
+Tips and tricks: http://edo.webmaster.am/jumi
 ================================
-Version 1.2.0
-Release date: 2008/03/25
+Version 1.3.0
+Release date: 2008/10/29
 Changes:
-   - The concept of optional Default Absolute Path was introduced and implemented. It enables you easily include files from your server that are outside Joomla! installation directory. Thanks Rudolf Polzer at alientrap.org who notified me about this possibility.
-   - New verification that included file exists and is readable. Thank to Fritz Elfert at fritz-elfer.de for this concept.
-   - There is a just one demo -  jumi_demo.php - in the distribution package now. It is installed automatically to Joomla! "modules/mod_jumi" directory. You can run it immediately and delete it whenever you want.
+   - Module parameter - Jumi arguments values - was substituted by a written code area. Here you can manually input not only previous Jumi arguments but custom html, php, css, js, ... scripts.
+   - Added Jumi language file for translation Jumi into non EN-GB languages.
+   - Added possibility to read the code from the Jumi component database.
 Upgrade from the previous version:
-   You have got two options:
-   - Standard: uninstall the old version of Jumi module and install the new one OR
-   - Simple: just rewrite modules/mod_jumi Joomla! directory with the content of the distribution package excluding this release_notes.txt.
+	 - Uninstall the old version and install the new one.
 ================================
 Remarks:
-   - Upgrade your bookmarks too. Jumi has the new site http://jumi.vedeme.cz. You can find another extensions, manuals, demo, tips and trick, snippet there.
+   - First verify that Jumi is running properly. Use our demo for your tests freely.
+   After Jumi module installation open the module in admoinistration and write into the field "Source of code" this: modules/mod_jumi/jumi.demo.php. Publish module. Save module. View content on the frontend.
