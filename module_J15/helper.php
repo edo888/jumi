@@ -1,34 +1,31 @@
 <?php
 /**
-* @version   $Id: helper.php 1.2.0
-* @package   Joomla 1.5, Jumi module for Joomla 1.5
-* @copyright Copyright (c) 2008 Martin Hájek. All rights reserved.
-* @license   GNU/GPL
+* @version $Id$
+* @package Joomla! 1.5
+* @copyright (c) 2008 Martin Hajek
+* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 */
-
-// no direct access
 defined('_JEXEC') or die('Restricted access');
-
 require_once (JPATH_SITE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php');
 
 class modJumiHelper
 {
-   function getJumiArray(&$params) //gets $jumi[] array
-   {
-      $dummy = $params->get( 'php_args' );
-      preg_match_all('/\[.*?\]/', $dummy, $matches);
-      if ($matches) {
-         foreach ($matches as $i=>$match) {
-            $jumi = preg_replace("/\[|]/", "", $match);
-         }
-      }
-      return $jumi;
+	function getCodeWritten(&$params){ //returns code written or ""
+		return trim($params->get( 'code_written' ));
 	}
-	function getFilePathname(&$params) //gets pathname of the file to be included
-	{
-      return $params->def('default_absolute_path',JPATH_ROOT).DS.trim($params->get('file_pathname'));
-   }
+	function getStorageSource(&$params){ //returns filepathname or a record id or ""
+    $storage=trim($params->get('source_code_storage'));
+    if ($storage!=""){
+  		if ($id = substr(strchr($storage,"*"),1)) { //if record id return it
+    		return (int)$id;
+    	}
+    	else { // else return filepathname
+    		return $params->def('default_absolute_path',JPATH_ROOT).DS.$storage;
+    	}
+    }
+    else {
+    	return "";
+    }
+	}
 }
-
-
-
+?>
