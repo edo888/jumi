@@ -13,6 +13,8 @@ require_once (dirname(__FILE__).DS.'helper.php');
 
 $code_written = modJumiHelper::getCodeWritten($params); //code written or ""
 $storage_source = modJumiHelper::getStorageSource($params); //filepathname or record id or ""
-
+if (is_int($storage_source)){ //it is record id
+	$code_stored = modJumiHelper::getCodeStored($storage_source); //code or null(error]
+}
 require(JModuleHelper::getLayoutPath('mod_jumi'));
 ?>
