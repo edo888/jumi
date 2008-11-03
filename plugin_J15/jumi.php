@@ -17,20 +17,17 @@ defined('_JEXEC') or die( "Direct Access Is Not Allowed" );
 // Import library dependencies
 jimport('joomla.event.plugin');
 
-class plgContentJumi extends JPlugin
-{
+class plgContentJumi extends JPlugin {
    //Constructor
-    function plgContentJumi( &$subject )
-    {
+   function plgContentJumi( &$subject ) {
       parent::__construct( $subject );
       // load plugin parameters
       $this->_plugin = JPluginHelper::getPlugin( 'content', 'jumi' );
       $this->_params = new JParameter( $this->_plugin->params );
-    }
+   }
 
    // Plugin method with the same name as the event will be called automatically.
-   function onPrepareContent(&$article, &$params, $limitstart)
-   {
+   function onPrepareContent(&$article, &$params, $limitstart) {
       // just startup
       global $mainframe;
       $plugin =& JPluginHelper::getPlugin('content', 'jumi');
@@ -73,7 +70,6 @@ class plgContentJumi extends JPlugin
    		// final replacing of $regex (i.e. jumi) in $article->text by $output 
    		$article->text = preg_replace($regex, $output, $article->text, 1);
    	}
-   	return true;   
+   	return true;
    }
 }
-?>
