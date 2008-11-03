@@ -1,11 +1,11 @@
 <?php
 /**
 * @version $Id$
-* @package Joomla! 1.0.X or Joomla! 1.5.X or Mambo_4.5.X, mod_jumi or plugin_jumi
+* @package Jumi
 * @copyright (C) 2008 Martin Hajek
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 */  
-defined('_JEXEC') OR defined('_VALID_MOS') OR die( "Direct Access Is Not Allowed" );
+defined('_JEXEC') OR die( "Direct Access Is Not Allowed" );
 function sitename() { //gets sitename
  $config = new JConfig();
  return $config->sitename;
