@@ -8,20 +8,7 @@
 	<authorEmail>admin@vedeme.cz</authorEmail>
 	<authorUrl>http://jumi.vedeme.cz</authorUrl>
 	<version>1.2.1</version>
-	<description>
-   Jumi content plugin for Joomla! includes into Joomla! articles any file.
-   In an addition it can pass into the included *.php file any number of argument values.
-	Usage:
-	As you write an article just write there this code: {jumi [pathname] [arg1] [arg2] ... [argN]},
-	where pathname is the file pathname of the file to be included.
-   The path is a relative one with respect to Default Absolute Path that can be set in the plugin parameters. If not set then is equivalent to Joomla! root.
-	Arguments [arg1] ... [argN] are optional. It depends on your custom included php file if it can handle them.
-	Arguments can be accessed by $jumi[] array in an included php file.
-	Example (included):  {jumi [plugin/content/jumi_demo.php][first][second]}
-	Remark: everything out of the square brackets is ignored; you can use this feature for your comments e.g. {Jumi blablabla [filepathneme] width=[arg1] heighth=[arg2]}
-	There is also a compatible Jumi module that includes the same files into Joomla! module positions.
-   Jumi manuals, demo, tips and tricks and snippets can be found at jumi.vedeme.cz
-   </description>
+	<description><![CDATA[<p>Jumi content plugin for Joomla! includes into Joomla! articles any file.</p><p>In an addition it can pass into the included *.php file any number of argument values.</p><i>Usage:</i><br/><p>As you write an article just write there this code: {jumi [pathname] [arg1] [arg2] ... [argN]},<br />where pathname is the file pathname of the file to be included.</p><p>The path is a relative one with respect to Default Absolute Path that can be set in the plugin parameters. If not set then is equivalent to Joomla! root.</p><p>Arguments [arg1] ... [argN] are optional. It depends on your custom included php file if it can handle them.</p><p>Arguments can be accessed by $jumi[] array in an included php file.</p><p>Example (included):  {jumi [plugin/content/jumi_demo.php][first][second]}</p><p>Remark: everything out of the square brackets is ignored; you can use this feature for your comments e.g. {Jumi blablabla [filepathneme] width=[arg1] heighth=[arg2]}</p><p>There is also a compatible Jumi module that includes the same files into Joomla! module positions.</p><p>Additional resources: <a href="http://jumi.vedeme.cz">Downloads & guides</a>, <a href="http://edo.webmaster.am/jumi">Tips & tricks</a>.</p>]]></description>
 	<files>
 		<filename plugin="jumi">jumi.php</filename>
 		<filename plugin="jumi">jumi_demo.php</filename>

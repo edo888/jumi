@@ -1,11 +1,11 @@
 <?php
 /**
 * @version $Id$
-* @package Joomla! 1.0.X or Joomla! 1.5.X or Mambo_4.5.X, mod_jumi or plugin_jumi
+* @package Jumi
 * @copyright (C) 2008 Martin Hajek
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 */  
-defined('_JEXEC') OR defined('_VALID_MOS') OR die( "Direct Access Is Not Allowed" );
+defined('_JEXEC') OR die( "Direct Access Is Not Allowed" );
 ?>
 
 <!-- Intro -->
@@ -16,16 +16,14 @@ defined('_JEXEC') OR defined('_VALID_MOS') OR die( "Direct Access Is Not Allowed
 <p>The real strength and great flexibility of Jumi lies in its ability to pass practically any number of argument values into your php scripts very easily. Values can be referrenced by $jumi[] array in your code.</p>
 <p>Your current content of $jumi[] array is:</p>
 <?php
-   if (!empty($jumi)){
-      echo "<ul>\n";
-      foreach ($jumi as $key => $value) {
-   	  echo '<li>$jumi['.$key.'] = '.$value.'</li>';
-   	}
-   	echo "</ul>\n";
-	}
-	else {
-		echo "<p>empty</p>";
-	}
+if(!empty($jumi)) {
+   echo '<ul>';
+   foreach($jumi as $key => $value)
+      echo '<li>$jumi['.$key.'] = '.$value.'</li>';
+   echo '</ul>';
+} else {
+   echo '<p>empty</p>';
+}
 ?>
 <!-- End -->
 <p>For another Jumi extensions, demo files, tips and tricks visit<p>
