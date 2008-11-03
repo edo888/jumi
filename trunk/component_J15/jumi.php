@@ -1,6 +1,6 @@
 <?php
 /**
-* @version   $Id: jumi.php 1.0.0
+* @version   $Id$
 * @package   Jumi
 * @copyright Copyright (C) 2008 Edvard Ananyan. All rights reserved.
 * @license   GNU/GPL, see LICENSE.php
