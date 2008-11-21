@@ -20,3 +20,4 @@ if(is_int($storage_source)) { //it is record id
 }
 
 require(JModuleHelper::getLayoutPath('mod_jumi'));
+?>

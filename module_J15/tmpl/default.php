@@ -14,18 +14,19 @@ if($code_written.$storage_source != '') { //something to show
   if($storage_source != '') { // if record id or filepathname
     if(is_int($storage_source)) { //it is record id
       if($code_stored != null) {
-	eval ('?>'.$code_stored); //include custom script written
+				eval ('?>'.$code_stored); //include custom script written
       } else {
-	echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD', $storage_source).'</div>';
+				echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD', $storage_source).'</div>';
       }
     } else { //it is file
       if(is_readable($storage_source)) {
-	include($storage_source); //include file
+				include($storage_source); //include file
       } else {
-	echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE', $storage_source).'</div>';
+				echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE', $storage_source).'</div>';
       }
     }
   }
 } else { //nothing to show
   echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_CONTENT').'</div>';
 }
+?>
