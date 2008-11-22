@@ -1,14 +1,14 @@
 Jumi content plugin for Joomla 1.5.x
 Developer's web pages: http://jumi.vedeme.cz
 ================================
-Version 1.2.1
-Release date: 2008/08/17
+Version 1.3.0
+Release date: 2008/xx/xx
 Changes:
-   - Bug fixed - Default Absolute Jumi Path did not change
+   - xx
 ================================
 Demo
 There is a demo -  jumi_demo.php - in the distribution package now. It is installed automatically to Joomla! "plugins/content" directory. You can run it immediately and delete it whenever you want.
 ================================
 Upgrade from previous versions
-   - Just rewrite appropriate files - jumi.php, jumi.xml - on your server with the new ones.
+   - 
 ================================
