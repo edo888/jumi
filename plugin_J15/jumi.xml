@@ -8,7 +8,7 @@
 	<authorEmail>admin@vedeme.cz</authorEmail>
 	<authorUrl>http://jumi.vedeme.cz</authorUrl>
 	<version>1.3.0</version>
-	<description>JUMIPLUGINDESC</description>
+	<description><![CDATA[<p>This content plugin includes into Joomla! articles custom script: manually or from a file or from - if installed - Jumi component database record.</p><b>Usage:</b><br/><p>Write into an article this code: {jumi [stored_code] [written_code]},<br />where stored_code is the file pathname of the file to be included or *id where id is the Jumi component database record or, if writte_code follows, you can leave this argument empty. Into the <b>optional argument written_code</b> you can place any html, php, js script.</p><p><b>Important</b>: Jumi plugin suppose the script is appropriately encoded. So use Jumi encoder!</p><p>There is also a compatible Jumi plugin and a component.</p><p>Additional information and resources: <a href="http://jumi.vedeme.cz">Downloads & guides</a>, <a href="http://edo.webmaster.am/jumi">Tips & tricks</a>.</p>]]></description>
 	<files>
 		<filename plugin="jumi">jumi.php</filename>
 		<filename>jumi/jumi_demo.php</filename>
@@ -25,4 +25,4 @@
 			<option value="1">Yes</option>
 		</param>
 	</params>
-</install>	
+</install>
