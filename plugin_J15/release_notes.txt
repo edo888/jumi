@@ -1,14 +1,15 @@
 Jumi content plugin for Joomla 1.5.x
 Developer's web pages: http://jumi.vedeme.cz
 ================================
-Version 1.3.0
-Release date: 2008/xx/xx
+Version 1.2.2
+Release date: 2008/11/28
 Changes:
-   - xx
+   - added language file for easy translation
+   - added possibility to read scripts from Jumi component database table
 ================================
 Demo
-There is a demo -  jumi_demo.php - in the distribution package now. It is installed automatically to Joomla! "plugins/content" directory. You can run it immediately and delete it whenever you want.
+There is a demo -  jumi_demo.php - in the distribution package. It is installed automatically to Joomla! "plugins/content/jumi" directory. You can run it immediately and delete it whenever you want.
 ================================
 Upgrade from previous versions
-   - 
+   - uninstall the previous release and install this new one
 ================================

@@ -10,7 +10,6 @@
 defined('_JEXEC') or die( "Direct Access Is Not Allowed" );
 // Import library dependencies
 jimport('joomla.event.plugin');
-require_once( dirname( __FILE__ ).DS.'jumi'.DS.'class.jumicoder.php' );
 
 class plgContentJumi extends JPlugin
 {
@@ -52,36 +51,28 @@ class plgContentJumi extends JPlugin
 				}
 			}
 			
-	    //Following syntax {jumi [storage_source][code_written]}
+	    //Following syntax {jumi [storage_source][arg1]...[argN]}
 			$storage_source = $this->getStorageSource(trim(array_shift($jumi)), $pluginParams->def('default_absolute_path',JPATH_ROOT)); //filepathname or record id or ""
-			$code_written = trim(array_shift($jumi)); //raw code written or ""
 			$output = ''; // Jumi output
 
-			if($code_written == '' && $storage_source == '') { //if nothing to show
+			if($storage_source == '') { //if nothing to show
 				$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::_('ERROR_CONTENT').'</div>';
 			} else { // buffer output
 				ob_start();
-				if($code_written != ''){ //if code written
-					$code_written = JumiCoder::cleanRubbish($code_written); //cleans possible rubbish
-					$code_written = JumiCoder::decode($code_written);
-	    		eval ('?>'.$code_written); //include custom script written
+				if(is_int($storage_source)){ //it is record id
+    		  $code_stored = $this->getCodeStored($storage_source);
+      		if($code_stored != null){ //include custom script written
+						eval ('?>'.$code_stored);
+      		} else {
+						$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD', $storage_source).'</div>';
+      		}
+      	} else { //it is file
+      		if(is_readable($storage_source)) {
+						include($storage_source); //include file
+      		} else {
+						$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE', $storage_source).'</div>';
+      		}
 				}
-	  		if($storage_source != ''){ //if record id or filepathname
-					if(is_int($storage_source)){ //it is record id
-	    		  $code_stored = $this->getCodeStored($storage_source);
-	      		if($code_stored != null){ //include custom script written
-							eval ('?>'.$code_stored);
-	      		} else {
-							$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD', $storage_source).'</div>';
-	      		}
-	      	} else { //it is file
-	      		if(is_readable($storage_source)) {
-							include($storage_source); //include file
-	      		} else {
-							$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE', $storage_source).'</div>';
-	      		}
-					}
-	  		}
 	  	if ($output == ''){ //if there are no errors
 	  		//$output = str_replace( '$' , '\$' , ob_get_contents()); fixed joomla bug
 	  		$output = ob_get_contents();
