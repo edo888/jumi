@@ -1,6 +1,11 @@
-Jumi component for Joomla 1.5.x
+Jumi package for Joomla 1.5
 Developer's web pages: http://edo.webmaster.am
 ================================
+Version 2.0.0
+Release date: 2008/11/29
+================================
+New integral Jumi package, which includes plugin, module and component.
+
 Version 1.0.0
 Release date: 2008/09/27
 ================================
