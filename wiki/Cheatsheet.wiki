@@ -1,5 +1,5 @@
-#summary Jumi cheatsheet for users and developers.
-= Jumi cheatsheet =
+#summary Jumi cheatsheets for users and developers.
+= Jumi cheatsheets =
 http://jumi.vedeme.cz/images/stories/cheatsheet_jumi_2.0.0_for_j1.5.png
 = Technical remark  =
 Custom codes are included into Joomla! content via following php codes:
