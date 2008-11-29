@@ -1,0 +1,17 @@
+Jumi module for Joomla 1.5.x
+Developer's web pages: http://jumi.vedeme.cz
+Downloads: http://jumi.vedeme.cz
+Tips and tricks: http://edo.webmaster.am/jumi
+================================
+Version 1.3.0
+Release date: 2008/10/29
+Changes:
+   - Module parameter - Jumi arguments values - was substituted by a written code area. Here you can manually input not only previous Jumi arguments but custom html, php, css, js, ... scripts.
+   - Added Jumi language file for translation Jumi into non EN-GB languages.
+   - Added possibility to read the code from the Jumi component database.
+Upgrade from the previous version:
+	 - Uninstall the old version and install the new one.
+================================
+Remarks:
+   - First verify that Jumi is running properly. Use our demo for your tests freely.
+   After Jumi module installation open the module in admoinistration and write into the field "Source of code" this: modules/mod_jumi/jumi.demo.php. Publish module. Save module. View content on the frontend.
