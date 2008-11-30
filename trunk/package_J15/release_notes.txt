@@ -6,7 +6,7 @@ Tips and tricks: http://edo.webmaster.am/jumi
 Version 2.0.0
 Release date: 2008/11/29
 ================================
-This is the first release of Jumi - the next generation produkt. It is based on previous versions of Jumi Module, Plugin and Application Component.
+This is the first release of Jumi - the next generation product. It is based on previous versions of Jumi Module, Plugin and Application Component.
 All previous Jumi extensions underwent internal enhacement, improvement and mutual integration.
 When upgrading from any previous version of any Jumi extension it is strictly recomended to uninstall all previous versions of any Jumi extension and install this one.
 All extensions contained in this package are installed automatically.
