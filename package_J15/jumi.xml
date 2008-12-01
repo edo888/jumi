@@ -68,6 +68,9 @@
         </files>
         <languages folder="admin/language">
             <language tag="en-GB">en-GB.com_jumi.ini</language>
+            <language tag="ru-RU">ru-RU.com_jumi.ini</language>
+            <language tag="cs-CZ">cs-CZ.com_jumi.ini</language>
+            <language tag="hy-AM">hy-AM.com_jumi.ini</language>
         </languages>
     </administration>
 </install>
