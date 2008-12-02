@@ -59,12 +59,18 @@
             <filename>module/tmpl/index.html</filename>
             <filename>module/tmpl/default.php</filename>
             <filename>module/language/en-GB.mod_jumi.ini</filename>
+            <filename>module/language/ru-RU.mod_jumi.ini</filename>
+            <filename>module/language/cs-CZ.mod_jumi.ini</filename>
+            <filename>module/language/hy-AM.mod_jumi.ini</filename>
             <filename>plugin/jumi.php</filename>
             <filename>plugin/jumi.xml</filename>
             <filename>plugin/release_notes.txt</filename>
             <filename>plugin/jumi/index.html</filename>
             <filename>plugin/jumi/jumi_demo.php</filename>
             <filename>plugin/language/en-GB.plg_content_jumi.ini</filename>
+            <filename>plugin/language/ru-RU.plg_content_jumi.ini</filename>
+            <filename>plugin/language/cs-CZ.plg_content_jumi.ini</filename>
+            <filename>plugin/language/hy-AM.plg_content_jumi.ini</filename>
         </files>
         <languages folder="admin/language">
             <language tag="en-GB">en-GB.com_jumi.ini</language>
