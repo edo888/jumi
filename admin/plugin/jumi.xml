@@ -16,11 +16,8 @@
         <filename>jumi/index.html</filename>
     </files>
 
-    <languages folder="language">
-        <language tag="en-GB">en-GB.plg_content_jumi.ini</language>
-        <language tag="ru-RU">ru-RU.plg_content_jumi.ini</language>
-        <language tag="cs-CZ">cs-CZ.plg_content_jumi.ini</language>
-        <language tag="hy-AM">hy-AM.plg_content_jumi.ini</language>
+    <languages>
+        <language tag="en-GB">language/en-GB.plg_content_jumi.ini</language>
     </languages>
 
     <params>
