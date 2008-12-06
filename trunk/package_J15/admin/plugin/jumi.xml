@@ -31,5 +31,9 @@
             <option value="0">No</option>
             <option value="1">Yes</option>
         </param>
+        <param name="nested_replace" type="radio" default="0" label="Nested replace" description="PARAMNESTED">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+    		</param>
     </params>
 </install>
