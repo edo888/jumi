@@ -12,7 +12,7 @@ $blogId    = isset($blogId) ? $blogId : '1748567850225926498';
 $login     = isset($login) ? $login : 'joomla-jumi';
 $cacheTime = isset($cacheTime) ? (int)$cacheTime : 86400;
 
-$myBlog = new blog($blogId, $login);
+$myBlog = new blog($blogId, $login, $cacheTime);
 $myBlog->printAllPosts();
 
 echo '<style type="text/css">
@@ -32,13 +32,15 @@ class blog {
     public $id;
     public $login;
     public $posts;
-    
-    function __construct($id, $login) {
+    public $cacheTime;
+
+    function __construct($id, $login, $cacheTime) {
         $this->id = $id;
         $this->login = $login;
+        $this->cacheTime = $cacheTime;
         $postsURL = 'http://www.blogger.com/feeds/'.$id.'/posts/default';
         $fileName = 'cache/'.md5($postsURL);
-        if(file_exists($fileName) and time() - filemtime($fileName) < $cacheTime) {
+        if(file_exists($fileName) and time() - filemtime($fileName) < $this->cacheTime) {
             $this->posts = simplexml_load_string(file_get_contents($fileName));
         } else {
             $feed = file_get_contents($postsURL);
@@ -50,7 +52,7 @@ class blog {
             }
         }
     }
-    
+
     public function printAllPosts() {
         echo '<div class="blog-posts">';
         $prev_date = '';
