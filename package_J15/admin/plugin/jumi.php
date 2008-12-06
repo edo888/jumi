@@ -35,54 +35,65 @@ class plgContentJumi extends JPlugin
 			$article->text = preg_replace( $regex, '', $article->text );
 			return true;
 		}
-		
-		// find all instances of $regex (i.e. jumi) in an article and put them in $matches
-		$matches = array();
-		preg_match_all( $regex, $article->text, $matches, PREG_SET_ORDER );
-		// cycle through all jumi instancies. Put text into $dummy[2]
-		foreach ($matches as $dummy) {
-			//read arguments contained in [] from $dummy[2] and put them into the array $jumi
-			$mms=array();
-			$jumi="";
-			preg_match_all('/\[.*?\]/', $dummy[2], $mms);
-			if ($mms) { //at the least one argument found
-				foreach ($mms as $i=>$mm) {
-					$jumi = preg_replace("/\[|]/", "", $mm);
-				}
-			}
-			
-	    //Following syntax {jumi [storage_source][arg1]...[argN]}
-			$storage_source = $this->getStorageSource(trim(array_shift($jumi)), $pluginParams->def('default_absolute_path',JPATH_ROOT)); //filepathname or record id or ""
-			$output = ''; // Jumi output
 
-			if($storage_source == '') { //if nothing to show
-				$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::_('ERROR_CONTENT').'</div>';
-			} else { // buffer output
-				ob_start();
-				if(is_int($storage_source)){ //it is record id
-    		  $code_stored = $this->getCodeStored($storage_source);
-      		if($code_stored != null){ //include custom script written
-						eval ('?>'.$code_stored);
-      		} else {
-						$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD', $storage_source).'</div>';
-      		}
-      	} else { //it is file
-      		if(is_readable($storage_source)) {
-						include($storage_source); //include file
-      		} else {
-						$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE', $storage_source).'</div>';
-      		}
-				}
-	  	if ($output == ''){ //if there are no errors
-	  		//$output = str_replace( '$' , '\$' , ob_get_contents()); fixed joomla bug
-	  		$output = ob_get_contents();
-	  	}
-			ob_end_clean();
-		}
+		$continuesearching = true;
+    while ($continuesearching){  //Nesting loop
 		
-		// final replacement of $regex (i.e. {jumi [][]}) in $article->text by $output
-			$article->text = preg_replace($regex, $output, $article->text, 1);
-		}
+			// find all instances of $regex (i.e. jumi) in an article and put them in $matches
+			$matches = array();
+			$matches_found = preg_match_all( $regex, $article->text, $matches, PREG_SET_ORDER );
+			if ($matches_found) {
+				// cycle through all jumi instancies. Put text into $dummy[2]
+				foreach ($matches as $dummy) {
+					//read arguments contained in [] from $dummy[2] and put them into the array $jumi
+					$mms=array();
+					$jumi="";
+					preg_match_all('/\[.*?\]/', $dummy[2], $mms);
+					if ($mms) { //at the least one argument found
+						foreach ($mms as $i=>$mm) {
+							$jumi = preg_replace("/\[|]/", "", $mm);
+						}
+					}
+					
+			    //Following syntax {jumi [storage_source][arg1]...[argN]}
+					$storage_source = $this->getStorageSource(trim(array_shift($jumi)), $pluginParams->def('default_absolute_path',JPATH_ROOT)); //filepathname or record id or ""
+					$output = ''; // Jumi output
+		
+					if($storage_source == '') { //if nothing to show
+						$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::_('ERROR_CONTENT').'</div>';
+					} else { // buffer output
+						ob_start();
+						if(is_int($storage_source)){ //it is record id
+		    		  $code_stored = $this->getCodeStored($storage_source);
+		      		if($code_stored != null){ //include custom script written
+								eval ('?>'.$code_stored);
+		      		} else {
+								$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD', $storage_source).'</div>';
+		      		}
+		      	} else { //it is file
+		      		if(is_readable($storage_source)) {
+								include($storage_source); //include file
+		      		} else {
+								$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE', $storage_source).'</div>';
+		      		}
+						}
+			  	if ($output == ''){ //if there are no errors
+			  		//$output = str_replace( '$' , '\$' , ob_get_contents()); fixed joomla bug
+			  		$output = ob_get_contents();
+			  	}
+					ob_end_clean();
+				}
+				
+				// final replacement of $regex (i.e. {jumi [][]}) in $article->text by $output
+					$article->text = preg_replace($regex, $output, $article->text, 1);
+				}
+				if ($pluginParams->get('nested_replace') == 0) {
+  				$continuesearching = false;
+  			}
+			} else {
+   		  $continuesearching = false;
+			}
+	}
 		return true;
 	}
 
