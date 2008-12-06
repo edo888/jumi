@@ -15,6 +15,7 @@
         <filename>index.html</filename>
         <filename>helper.php</filename>
         <filename>jumi_demo.php</filename>
+        <filename>release_notes.txt</filename>
         <filename>tmpl/default.php</filename>
         <filename>tmpl/index.html</filename>
     </files>
@@ -24,6 +25,7 @@
         <language tag="ru-RU">ru-RU.mod_jumi.ini</language>
         <language tag="cs-CZ">cs-CZ.mod_jumi.ini</language>
         <language tag="hy-AM">hy-AM.mod_jumi.ini</language>
+        <language tag="es-ES">es-ES.mod_jumi.ini</language>
     </languages>
 
     <params>
