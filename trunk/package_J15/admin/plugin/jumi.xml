@@ -7,12 +7,11 @@
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>admin@vedeme.cz</authorEmail>
     <authorUrl>http://jumi.vedeme.cz</authorUrl>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <description>JUMIPLUGINDESC</description>
 
     <files>
         <filename plugin="jumi">jumi.php</filename>
-        <filename>release_notes.txt</filename>
         <filename>jumi/jumi_demo.php</filename>
         <filename>jumi/index.html</filename>
     </files>

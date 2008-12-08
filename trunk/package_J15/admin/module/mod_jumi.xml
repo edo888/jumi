@@ -3,11 +3,11 @@
     <name>Jumi</name>
     <author>Martin Hajek</author>
     <creationDate>October 2008</creationDate>
-    <copyright>(c) 2006 - 2008 Martin Hajek. All rights reserved.</copyright>
+    <copyright>Copyright (c) 2006 - 2008 Martin Hajek. All rights reserved.</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>admin@vedeme.cz</authorEmail>
     <authorUrl>http://jumi.vedeme.cz</authorUrl>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <description>JUMIMODULEDESC</description>
 
     <files>
@@ -15,7 +15,6 @@
         <filename>index.html</filename>
         <filename>helper.php</filename>
         <filename>jumi_demo.php</filename>
-        <filename>release_notes.txt</filename>
         <filename>tmpl/default.php</filename>
         <filename>tmpl/index.html</filename>
     </files>
