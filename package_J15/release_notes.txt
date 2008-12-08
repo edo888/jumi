@@ -6,7 +6,7 @@ Tips and tricks: http://edo.webmaster.am/jumi
 Version 2.0.1
 Release date: 2008/12/09
 ================================
-This is the first release of Jumi - the next generation product. It is based on previous versions of Jumi Module, Plugin and Application Component.
+This is the next generation Jumi. It is based on previous 1.x.x versions of Jumi Module, Plugin and Application Component.
 All previous Jumi extensions underwent internal enhacement, improvement and mutual integration.
 When upgrading from any previous version of any Jumi extension it is strictly recomended to uninstall all previous versions of any Jumi extension and install this one.
 All extensions contained in this package are installed automatically.
@@ -16,12 +16,13 @@ This package contains the following extensions:
     - Jumi module
 
 Changes:
-    - added nesting possibility: interpreting Jumi code in included scripts too
-    - added language file for easy translations
-    - from now a part of Jumi integral package only
-    - module parameter - Jumi arguments values - was substituted by a written code area. Here you can manually input not only previous Jumi arguments but custom html, php, css, js, ... scripts.
-    - added language file for easy translations
-    - added possibility to read the code from the Jumi component database.
+    - added plugin nesting possibility: interpreting Jumi code in included scripts too
+    - added AM, CS, ES, RU languages into component, plugin and module
+    - has been extended component database compatibility to MySQL 4 too
+    - has been created router for component allowing access to the application item by entering URL like this http://example.com/application-
+alias (if the Joomla! SEO is enabled)
+		- fixed undefined variable cacheTime in blogger.php demo file
+
 ================================
 Demo
 There are several demos there. All of them are installed automatically. Any one is accessible by any Jumi extension.
