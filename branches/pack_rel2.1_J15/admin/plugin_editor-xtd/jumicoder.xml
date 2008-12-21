@@ -13,6 +13,8 @@
 		<filename plugin="jumicoder">jumicoder.php</filename>
 		<filename>jumicoder/jumicoder_form.php</filename>
 		<filename>jumicoder/jumicoder.png</filename>
+		<filename>jumicoder/jumicoder_help.php</filename>
+		<filename>jumicoder/jumicoder_help.png</filename>
 		<filename>jumicoder/index.html</filename>
 	</files>
 	<languages folder="language">
