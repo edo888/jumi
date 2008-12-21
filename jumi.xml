@@ -77,6 +77,8 @@
 						<filename>plugin_editor-xtd/jumicoder.php</filename>
     				<filename>plugin_editor-xtd/jumicoder/jumicoder_form.php</filename>
       			<filename>plugin_editor-xtd/jumicoder/jumicoder.png</filename>
+      			<filename>plugin_editor-xtd/jumicoder/jumicoder_help.php</filename>
+						<filename>plugin_editor-xtd/jumicoder/jumicoder_help.png</filename>
       			<filename>plugin_editor-xtd/jumicoder/index.html</filename>
   					<filename>plugin_editor-xtd/language/en-GB.plg_editors-xtd_jumicoder.ini</filename>
   			</files>
