@@ -69,14 +69,13 @@ function JumiCoderForm()
 <!--
 body {font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px;color:#000000;background-color:#F9F9F9;}
 .jumicoder {text-align: center;}
-.jumicoder .warn {color: #FF0000; font-size:9px;}
 -->
 </style>
 </head>
 <body>
 <div class="jumicoder">
 	<?php JumiCoderForm(); ?>
-	<span class="warn">If there is a "clearing entities" option in your Joomla! wysiwyg editor disable it!</span>
+	<a href="jumicoder_help.php" title="Help">Help</a>
 </div>
 </body>
 </html>
