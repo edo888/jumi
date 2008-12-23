@@ -2,7 +2,7 @@
 /**
 * @version $Id$
 * @package Joomla! 1.5.x, Jumi plugin
-* @copyright (c) 2008 Martin Hajek
+* @copyright (c) 2009 Martin Hajek
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 *
 * Usage: {jumi stored_code_source}code_written{/jumi}
@@ -30,10 +30,11 @@ class plgContentJumi extends JPlugin
 	  global $mainframe;
 	  $plugin =& JPluginHelper::getPlugin('content', 'jumi');
 	  $pluginParams = new JParameter( $plugin->params );
+	  $debug = $pluginParams->get( 'debug_mode');
 	  // expression to search for
 	  $regex = '%\{jumi\b[^}]?(\S*?)\}([\S\s]*?)\{/jumi\}%';
 		// if hide_code then replace jumi syntax codes with an empty string
-		if ( $pluginParams->get( 'hide_code') == 1 ) {
+		if ( $pluginParams->get( 'clear_code') == 1 ) {
 			$article->text = preg_replace( $regex, '', $article->text );
 			return true;
 		}
@@ -52,7 +53,7 @@ class plgContentJumi extends JPlugin
 					$code_written = $result[$matchi][2]; //raw code written or ""
 					$output = ''; // Jumi output
 					if($code_written == '' && $storage_source == '') { //if nothing to show
-						$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::_('ERROR_CONTENT').'</div>';
+					  $output = ($debug == 0) ? 'dbgerr' : '<div style="color:#FF0000;background:#FFFF00;">'.JText::_('ERROR_CONTENT').'</div>';
 					} else { // buffer output
 						ob_start();
 						if($code_written != ''){ //if code written
@@ -66,23 +67,25 @@ class plgContentJumi extends JPlugin
 			      		if($code_stored != null){
 									eval ('?>'.$code_stored);//include record
 			      		} else {
-									$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD', $storage_source).'</div>';
+									$output = ($debug == 0) ? 'dbgerr' : '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD', $storage_source).'</div>';
 			      		}
 			      	} else { //if file
 			      		if(is_readable($storage_source)) {
 									include($storage_source); //include file
 			      		} else {
-									$output = '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE', $storage_source).'</div>';
+									$output = ($debug == 0) ? 'dbgerr' : '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE', $storage_source).'</div>';
 			      		}
 							}
 			  		}
 			  	if ($output == ''){ //if there are no errors
 			  		// $output = str_replace( '$' , '\$' , ob_get_contents()); fixed joomla bug
 			  		$output = ob_get_contents();
+			  	} elseif ($output == 'dbgerr'){
+			  		$output = '';
 			  	}
 					ob_end_clean();
 				}
-				// final replacement of $regex (i.e. {jumi [][]}) in $article->text by $output
+				// final replacement of $regex (i.e. {jumi}) in $article->text by $output
 				$article->text = preg_replace($regex, $output, $article->text, 1);
 				}
 				if ($pluginParams->get('nested_replace') == 0) {

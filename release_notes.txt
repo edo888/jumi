@@ -17,9 +17,10 @@ This package contains the following extensions:
     - Jumi module
 
 Changes:
-    - syntax of Jumi plugin changed to {jumi stored_code_source}code_written{/jumi}
+    - syntax of Jumi content plugin changed to {jumi stored_code_source}code_written{/jumi}
     - added Jumi editor-xtd (button) plugin that encodes/decodes code_written
-    - Jumi plugin processes html, php, js, css code added directly into Joomla! articles by Jumi button
+    - Jumi content plugin processes html, php, js, css codes added directly into Joomla! articles by Jumi button
+    - added Debug mode parameter to Jumi content plugin. If Debug is set to No then no error messages are shown and the relevant Jumi syntax is cleared from the article
 
 ================================
 Demo

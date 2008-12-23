@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 /**
 * @version $Id$
 * @package Joomla! 1.5.x, Jumi editors-xtd plugin
-* @copyright (c) 2008 Martin Hajek
+* @copyright (c) 2009 Martin Hajek
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 *
 */
