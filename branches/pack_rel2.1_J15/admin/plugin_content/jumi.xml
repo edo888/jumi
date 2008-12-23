@@ -2,7 +2,7 @@
 <install version="1.5" type="plugin" group="content">
     <name>Jumi</name>
     <author>Martin Hajek</author>
-    <creationDate>January 2008</creationDate>
+    <creationDate>February 2009</creationDate>
     <copyright>Copyright (c) 2006 - 2009 Martin Hajek. All rights reserved.</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>admin@vedeme.cz</authorEmail>
@@ -27,13 +27,17 @@
 
     <params>
         <param name="default_absolute_path" type="text" size ="80" default="" label="Default Absolute Jumi Path" description="PARAMABSPATH" />
-        <param name="hide_code" type="radio" default="0" label="Hide Jumi code" description="PARAMHIDECODE">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
-        </param>
         <param name="nested_replace" type="radio" default="0" label="Nested replace" description="PARAMNESTED">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
     		</param>
+    		<param name="debug_mode" type="radio" default="0" label="Debug mode" description="PARAMDEBUGMODE">
+            <option value="0">No</option>
+        		<option value="1">Yes</option>
+         </param>
+        <param name="clear_code" type="radio" default="0" label="Stop/Clear Jumi" description="PARAMCLEARJUMI">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </param>
     </params>
 </install>
