@@ -75,6 +75,7 @@
             <filename>plugin_content/language/hy-AM.plg_content_jumi.ini</filename>
             <filename>plugin_content/language/es-ES.plg_content_jumi.ini</filename>
 						<filename>plugin_editor-xtd/jumicoder.php</filename>
+						<filename>plugin_editor-xtd/jumicoder.xml</filename>
     				<filename>plugin_editor-xtd/jumicoder/jumicoder_form.php</filename>
       			<filename>plugin_editor-xtd/jumicoder/jumicoder.png</filename>
       			<filename>plugin_editor-xtd/jumicoder/jumicoder_help.php</filename>

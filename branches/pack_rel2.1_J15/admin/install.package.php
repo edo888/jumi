@@ -1,4 +1,11 @@
 <?php
+/**
+* @version   $Id$
+* @package   Jumi
+* @copyright Copyright (C) 2008 Edvard Ananyan. All rights reserved.
+* @license   GNU/GPL, see LICENSE.php
+*/
+
 defined("_JEXEC") or die("Restricted access");
 
 // installing module
@@ -9,8 +16,15 @@ else
     echo 'Module install failed', '<br />';
 
 // installing plugin
-$plugin_installer = new JInstaller;
-if($plugin_installer->install(dirname(__FILE__).DS.'plugin'))
-    echo 'Plugin install success', '<br />';
+$cont_plugin_installer = new JInstaller;
+if($cont_plugin_installer->install(dirname(__FILE__).DS.'plugin_content'))
+    echo 'Content plugin install success', '<br />';
 else
-    echo 'Plugin install failed', '<br />';
+    echo 'Content plugin install failed', '<br />';
+
+// installing plugin
+$xtd_plugin_installer = new JInstaller;
+if($xtd_plugin_installer->install(dirname(__FILE__).DS.'plugin_editor-xtd'))
+    echo 'Editor-xtd  plugin install success', '<br />';
+else
+    echo 'Editor-xtd plugin install failed', '<br />';
