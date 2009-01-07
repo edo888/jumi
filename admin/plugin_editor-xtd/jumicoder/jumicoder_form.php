@@ -35,7 +35,7 @@ function JumiCoderForm()
 				if ($nowis_checked == 'checked'){
 					$decoded = JumiCoder::cleanRubbish($decoded); //cleans possible rubbish
 				}
-				$decoded = JumiCoder::decode($decoded);
+				$decoded = JumiCoder::decode($decoded, 1);
 			}
 			echo JumiCoder::viewEntities($decoded);
 		echo '</textarea><br />';

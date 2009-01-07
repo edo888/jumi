@@ -14,15 +14,15 @@ class JumiCoder
 		return htmlspecialchars(stripslashes($source), ENT_NOQUOTES);
 	}
 	
-	function decode($source)
-	{
+	function decode($source,$strip)
+	{ //$strip==1 then stripslashes: For Jumicoder only. For code parsing do not do that.
 		if (!function_exists("htmlspecialchars_decode")) {
-			return strtr(stripcslashes($source), array_flip(get_html_translation_table(HTML_SPECIALCHARS, ENT_NOQUOTES))); //for PHP 4
+			return ($strip == 1) ? strtr(stripslashes($source), array_flip(get_html_translation_table(HTML_SPECIALCHARS, ENT_NOQUOTES))) : strtr($source, array_flip(get_html_translation_table(HTML_SPECIALCHARS, ENT_NOQUOTES))); //for PHP 4
 		} else {
-    	return htmlspecialchars_decode(stripcslashes($source), ENT_NOQUOTES);
+    	return ($strip == 1) ? htmlspecialchars_decode(stripslashes($source), ENT_NOQUOTES) : htmlspecialchars_decode($source, ENT_NOQUOTES);
     }
 	}
-		
+	
 	function viewEntities($source)
 	{ //just replaces & to &amp; so that &xxx; is seen by a browser as an entity
 		return str_replace('&', '&amp;', $source);
