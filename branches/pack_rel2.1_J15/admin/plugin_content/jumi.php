@@ -58,7 +58,7 @@ class plgContentJumi extends JPlugin
 						ob_start();
 						if($code_written != ''){ //if code written
 							$code_written = JumiCoder::cleanRubbish($code_written);
-							$code_written = JumiCoder::decode($code_written);
+							$code_written = JumiCoder::decode($code_written, 0);
 			    		eval ("?>".$code_written); //include code written
 						}
 			  		if($storage_source != ''){ //if record id or filepathname
