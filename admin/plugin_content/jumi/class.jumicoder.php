@@ -30,7 +30,7 @@ class JumiCoder
 	
 	function cleanRubbish($source)
 	{ // cleans from the $source (encoded code in an article) possible rubbish brought by wysiwyg
-		$cleaningTab = array(	"<br>" => "\n", "<br />" => "\n",	"<p>" => "\n", "</p>" => "\n", "&nbsp;" => " ");
+		$cleaningTab = array(	"<br>" => "\n", "<br />" => "\n",	"<p>" => "\n", "</p>" => "\n", "&nbsp;" => " ", "&#160;" => " ");
 		foreach ($cleaningTab as $key => $cleaningTab) {
     	$source = str_replace($key, $cleaningTab[$key], $source);
 		}
