@@ -36,7 +36,7 @@
     </uninstall>
 
     <url>
-        <linkparts name="fileid" type="sql" default="1" label="FILE" query="SELECT id, title FROM #__jumi" key_field="id" value_field="title" description="PARAMFILE" />
+        <linkparts name="fileid" type="sql" default="1" label="Select Application" query="SELECT id, title FROM #__jumi" key_field="id" value_field="title" description="PARAMFILE" />
     </url>
 
     <administration>
