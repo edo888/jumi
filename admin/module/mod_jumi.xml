@@ -2,12 +2,12 @@
 <install type="module" version="1.5.0">
     <name>Jumi</name>
     <author>Martin Hajek</author>
-    <creationDate>October 2008</creationDate>
-    <copyright>Copyright (c) 2006 - 2008 Martin Hajek. All rights reserved.</copyright>
+    <creationDate>February 2008</creationDate>
+    <copyright>Copyright (c) 2006 - 2009 Martin Hajek. All rights reserved.</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>admin@vedeme.cz</authorEmail>
     <authorUrl>http://jumi.vedeme.cz</authorUrl>
-    <version>2.0.1</version>
+    <version>2.1.0</version>
     <description>JUMIMODULEDESC</description>
 
     <files>
@@ -42,6 +42,10 @@
             <option value="1">Use global</option>
             <option value="0">No caching</option>
         </param>
+    		<param name="debug_mode" type="radio" default="0" label="Debug mode" description="PARAMDEBUGMODE">
+						<option value="0">No</option>
+        		<option value="1">Yes</option>
+         </param>
         <param name="cache_time" type="text" default="900" label="Cache Time" description="PARAMMODULECACHETIME" />
     </params>
 </install>
