@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<mosinstall type="mambot" group="content">
+    <name>Jumi</name>
+    <author>Martin Hajek</author>
+    <creationDate>March 2008</creationDate>
+    <copyright>(c) 2006 - 2008 Martin Hajek. All rights reserved.</copyright>
+    <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+    <authorEmail>admin@vedeme.cz</authorEmail>
+    <authorUrl>jumi.vedeme.cz</authorUrl>
+    <version>1.2.0</version>
+    <description><![CDATA[<b>Jumi content plugin</b> for Joomla! and Mambo includes into Joomla! articles any file.<br />In an addition it can pass into the included *.php file any number of argument values.<br /><br /><b>Usage</b>:<br />As you write an article just write there this code:<br /> {jumi [pathname] [arg1] [arg2] ... [argN]}<br />where pathname is the file pathname of the file to be included. The path is a relative one with respect to Default Absolute Path that can be set in the plugin parameters. If not set then is equivalent to Joomla! root.<br />Arguments [arg1] ... [argN] are optional. It depends on your custom included php file if it can handle them.<br />Arguments can be accessed by $jumi[] array in an included php file.<br /><b>Example</b> (included):  {jumi [mambots/content/jumi_demo.php][first][second]}<br /><b>Remark</b>: everything out of the square brackets is ignored; you can use this feature for your comments e.g. {Jumi blablabla [filepathneme] width=[arg1] heighth=[arg2]}<br /><br />There is also a compatible Jumi module that includes the same files into Joomla! module positions.<br />Jumi manuals, demo, tips and tricks and snippets can be found at <a href="http://jumi.vedeme.cz" target="_blank">jumi.vedeme.cz</a>]]></description>
+
+    <files>
+        <filename mambot="plugin_jumi">plugin_jumi.php</filename>
+        <filename>jumi_demo.php</filename>
+    </files>
+
+    <params>
+        <param name="default_absolute_path" type="text" size ="80" default="" label="Default Absolute Path" description="Optional Default Absolute Path to included files. If left blank then it is identical to Joomla! root directory. No slash at the end." />
+    </params>
+</mosinstall>
