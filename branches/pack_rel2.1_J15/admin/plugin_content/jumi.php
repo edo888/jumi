@@ -78,7 +78,7 @@ class plgContentJumi extends JPlugin
 							}
 			  		}
 			  	if ($output == ''){ //if there are no errors
-			  		// $output = str_replace( '$' , '\$' , ob_get_contents()); fixed joomla bug
+			  		$output = str_replace( '$' , '\$' , ob_get_contents()); //fixed joomla bug
 			  		$output = ob_get_contents();
 			  	} elseif ($output == 'dbgerr'){
 			  		$output = '';
