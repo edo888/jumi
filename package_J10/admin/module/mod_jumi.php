@@ -36,7 +36,7 @@ if($code_written.$storage_source != '') { //something to show
 				eval ('?>'.$code_stored); //include custom script written
       } else {
       	if ($debug != 0){
-					echo '<div style="color:#FF0000;background:#FFFF00;">'.'ERR: Record ID:<b>'.$storage_source.'</b> does not exist, or is not published, or you have got insufficient rights to read it!</div>';
+					echo '<div style="color:#FF0000;background:#FFFF00;">ERR: Record ID:<b>'.$storage_source.'</b> does not exist, or is not published, or you have got insufficient rights to read it!</div>';
 				}
       }
     } else { //it is file
@@ -44,14 +44,14 @@ if($code_written.$storage_source != '') { //something to show
 				include($storage_source); //include file
       } else {
       	if ($debug != 0){
-					echo '<div style="color:#FF0000;background:#FFFF00;">'.'ERR: The file<br /><b>'.$storage_source.'</b><br />does not exist or is not readable!</div>';
+					echo '<div style="color:#FF0000;background:#FFFF00;">ERR: The file<br /><b>'.$storage_source.'</b><br />does not exist or is not readable!</div>';
 				}
       }
     }
   }
 } else { //nothing to show
 	if ($debug != 0){
-  	echo '<div style="color:#FF0000;background:#FFFF00;">'.'ERR: Jumi is working but there is <b>nothing to be shown</b>.<br />Write the code and/or specify the nonempty source of the code.'.'</div>';
+  	echo '<div style="color:#FF0000;background:#FFFF00;">ERR: Jumi is working but there is <b>nothing to be shown</b>.<br />Write the code and/or specify the nonempty source of the code.</div>';
   }
 } 
 ?>
