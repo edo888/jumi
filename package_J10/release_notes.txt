@@ -6,14 +6,14 @@ Tips and tricks: http://edo.webmaster.am/jumi
 Version 2.0.0d
 Release date: 2009/02/14
 ================================
-This is the next generation Jumi for Joomla 1.0. It is based on previous versions of Jumi Module, Plugin and on Jumo component for Joomla 1.5.
+This is the next generation Jumi for Joomla! 1.0. It is based on previous versions of Jumi Module, Plugin and on Jumo component for Joomla 1.5.
 All previous Jumi extensions underwent internal enhacement, improvement and mutual integration.
 When upgrading from any previous version of any Jumi extension it is strictly recomended to uninstall all previous versions of any Jumi extension and install this one.
-All extensions contained in this package are installed automatically.
-This package contains the following extensions:
-    - Jumi component
-    - Jumi content plugin
-    - Jumi module
+This package contains the following Jumi custom code extensions: component, content plugin, module
+
+Installation instructions:
+Install Jumi package as a standard Joomla! 1.0 component.
+All extensions contained in the package are installed automatically.
 
 Changes:
     - added new extension - Jumi component
@@ -25,13 +25,10 @@ Changes:
 ================================
 Demo
 There are several demos there. All of them are installed automatically. Any one is accessible by any Jumi extension.
-Component demo: there are two component demos in Jumi table of
-your Joomla! database. The first one, Hello Jumi!, is automatically assign
-the main menu item. The second one, Blogspot, can be accessed through the
-previous demo or you can assign to it a menu item manually - by a standard
-Joomla! manner.
-Module demo file: modules/mod_jumi/jumi_demo.php
-Plugin demo file: mambots/content/jumi/jumi_demo.php
+    - Component demo: there are two component demos there. The first one, Hello Jumi!, is automatically assign
+the main menu item nad published. The second one, Blogspot, can be accessed through the previous demo or you can assign to it a menu item manually - by a standard Joomla! manner.
+    - Module demo file: modules/mod_jumi/jumi_demo.php
+    - Plugin demo file: mambots/content/jumi/jumi_demo.php
 ================================
 Remarks:
     - uninstallation of Jumi component uninstalls Jumi module and Jumi plugin as well.
