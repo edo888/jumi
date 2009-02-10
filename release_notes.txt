@@ -4,21 +4,23 @@ Downloads and guides: http://jumi.vedeme.cz
 Tips and tricks: http://edo.webmaster.am/jumi
 ================================
 Version 2.1.0
-Release date: 2009/02/01
+Release date: 2009/02/27
 ================================
-This is the next generation Jumi. It is based on previous 1.x.x versions of Jumi Module, Plugin and Application Component.
-All previous Jumi extensions underwent internal enhacement, improvement and mutual integration.
-When upgrading from any previous version of any Jumi extension it is strictly recomended to uninstall all previous versions of any Jumi extension and install this one.
-All extensions contained in this package are installed automatically.
 This package contains the following extensions:
     - Jumi component
     - Jumi content plugin
     - Jumi editor-xtd (button) plugin
     - Jumi module
 
+Installation/uninstallation instructions:
+Install Jumi package as a standard Joomla! extension. All extensions contained in the package are installed automatically.
+Uninstallation of Jumi component also uninstalls Jumi module and both Jumi plugins.
+
+Ugrades from previous versions:
+It is strictly recomended to uninstall all previous versions of any Jumi extension and install this one.
+
 Changes:
-    - syntax of Jumi content plugin changed to <jumi stored_code_source>code_written</jumi>
-    - the syntax enables to use Joomla! filtering options (blacklists)
+    - syntax of Jumi content plugin changed to {jumi stored_code_source}code_written{/jumi}
     - added Jumi editor-xtd (button) plugin that encodes/decodes code_written
     - Jumi content plugin processes html, php, js, css codes added directly into Joomla! articles by Jumi button
     - added Debug mode parameter to Jumi content plugin. If Debug is set to No then no error messages are shown and the relevant Jumi syntax is cleared from the article
@@ -26,13 +28,8 @@ Changes:
 ================================
 Demo
 There are several demos there. All of them are installed automatically. Any one is accessible by any Jumi extension.
-Component demo: there are two component demos in Jumi table of
-your Joomla! database. The first one, Hello Jumi!, is automatically assign
-the main menu item. The second one, Blogspot, can be accessed through the
-previous demo or you can assign to it a menu item manually - by a standard
-Joomla! manner.
+Component demo: there are two component demos in Jumi table of your Joomla! database. The first one, Hello Jumi!, is automatically assign the main menu item. The second one, Blogspot, can be accessed through the previous demo or you can assign to it a menu item manually - by a standard Joomla! manner.
 Module demo file: modules/mod_jumi/jumi_demo.php
 Plugin demo file: plugins/content/jumi/jumi_demo.php
 ================================
-Remarks:
-    - uninstallation of Jumi component also uninstalls Jumi module and both Jumi plugins.
+
