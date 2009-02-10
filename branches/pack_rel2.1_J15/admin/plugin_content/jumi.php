@@ -5,7 +5,7 @@
 * @copyright (c) 2009 Martin Hajek
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 *
-* Usage: <jumi stored_code_source>code_written</jumi>
+* Usage: {jumi stored_code_source}code_written{/jumi}
 */ 
 
 defined('_JEXEC') or die( "Direct Access Is Not Allowed" );
@@ -32,7 +32,7 @@ class plgContentJumi extends JPlugin
 	  $pluginParams = new JParameter( $plugin->params );
 	  $debug = $pluginParams->get( 'debug_mode');
 	  // expression to search for
-	  $regex = '%\<jumi\b[^}]?(\S*?)\>([\S\s]*?)\</jumi\>%';
+	  $regex = '%\{jumi\b[^}]?(\S*?)\}([\S\s]*?)\{/jumi\}%';
 		// if hide_code then replace jumi syntax codes with an empty string
 		if ( $pluginParams->get( 'clear_code') == 1 ) {
 			$article->text = preg_replace( $regex, '', $article->text );
@@ -40,7 +40,7 @@ class plgContentJumi extends JPlugin
 		}
 
 		$continuesearching = true;
-		//Nesting loop. NO <jumi></jumi> in code_written please!
+		//Nesting loop. NO {jumi}{/jumi} in code_written please!
     while ($continuesearching){
 			// find all instances of $regex (i.e. jumi syntax) in an article and put them in $result
 			$result = array();
@@ -48,7 +48,7 @@ class plgContentJumi extends JPlugin
 			if ($matches_found) {
 				// cycle through all jumi instancies.
 				for ($matchi = 0; $matchi < count($result); $matchi++) {
-			    //Following syntax <jumi stored_code_source>code_written</jumi}. NO <jumi></jumi> in code_written please!
+			    //Following syntax {jumi stored_code_source}code_written{/jumi}. NO {jumi}{/jumi} in code_written please!
 					$storage_source = $this->getStorageSource(trim($result[$matchi][1]), $pluginParams->def('default_absolute_path',JPATH_ROOT)); //filepathname or record id or ""
 					$code_written = $result[$matchi][2]; //raw code written or ""
 					$output = ''; // Jumi output
