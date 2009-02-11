@@ -30,13 +30,43 @@ class plgContentJumi extends JPlugin
 	  global $mainframe;
 	  $plugin =& JPluginHelper::getPlugin('content', 'jumi');
 	  $pluginParams = new JParameter( $plugin->params );
+	  $regex = '%\{jumi\b[^}]?(\S*?)\}([\S\s]*?)\{/jumi\}%'; // Jumi expression to search for
 	  $debug = $pluginParams->get( 'debug_mode');
-	  // expression to search for
-	  $regex = '%\{jumi\b[^}]?(\S*?)\}([\S\s]*?)\{/jumi\}%';
-		// if hide_code then replace jumi syntax codes with an empty string
-		if ( $pluginParams->get( 'clear_code') == 1 ) {
+
+		//Clear the Jumi code and syntax from the article in the frontend?
+	  //jimport( 'joomla.application.component.helper' );	
+		switch ($pluginParams->get( 'clear_code')) {
+			case '0':
+				$clearing = true;
+			  $aagid = $this->getGroupIdFromType($article->usertype); //article autor group id
+				$config	= JComponentHelper::getParams( 'com_content' );
+				$filterGroups	=  $config->get( 'filter_groups' ); //$params->_registry[_default][data]->filter_groups;
+				$filterType		= $config->get( 'filter_type' ); //$params->_registry[_default][data]->filter_type;
+				if ((is_array($filterGroups) && in_array( $aagid, $filterGroups )) || (!is_array($filterGroups) && $aagid == $filterGroups)) {
+					if ($filterType == 'WL') {
+						$clearing = false;
+					}
+				} else {
+					if ($filterType != 'WL') {
+						$clearing = false;
+					}
+				}
+			break;
+			case '1':
+				$clearing = true;
+			break;
+			case '2':
+				$clearing = false;
+			break;
+			default:
+				$clearing = false; 
+		}	
+		if ($clearing) { // if clearing yes then clear and end
+			echo "Clearing Jumi"; //just for testing purpose
 			$article->text = preg_replace( $regex, '', $article->text );
 			return true;
+		} else {
+			echo "Not clearing Jumi"; //just for testing purpose
 		}
 
 		$continuesearching = true;
@@ -78,7 +108,7 @@ class plgContentJumi extends JPlugin
 							}
 			  		}
 			  	if ($output == ''){ //if there are no errors
-			  		$output = str_replace( '$' , '\$' , ob_get_contents()); //fixed joomla bug
+			  		// $output = str_replace( '$' , '\$' , ob_get_contents()); fixed joomla bug
 			  		$output = ob_get_contents();
 			  	} elseif ($output == 'dbgerr'){
 			  		$output = '';
@@ -119,6 +149,13 @@ class plgContentJumi extends JPlugin
   	}	else { // else return ""
   	return '';
 		}
+	}
+
+	function getGroupIdFromType($type) 
+	{ //returns user group id from its type or null
+		$database	=& JFactory::getDBO();
+		$database->setQuery( 'SELECT id FROM #__core_acl_aro_groups WHERE name = "'.$type.'"' );
+		return $database->loadResult();
 	}
 
 }
