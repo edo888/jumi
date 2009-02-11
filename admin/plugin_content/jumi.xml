@@ -35,9 +35,10 @@
             <option value="0">No</option>
         		<option value="1">Yes</option>
          </param>
-        <param name="clear_code" type="radio" default="0" label="Stop/Clear Jumi" description="PARAMCLEARJUMI">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
+        <param name="clear_code" type="list" default="0" label="Stop/Clear Jumi" description="PARAMCLEARJUMI">
+            <option value="0">SELECTIVELY by article author Filter group (recommended)</option>
+            <option value="1">in ALL articles (just for temporary usage)</option>
+            <option value="2">in NO articles (rather risky)</option>
         </param>
     </params>
 </install>
