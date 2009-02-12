@@ -62,11 +62,11 @@ class plgContentJumi extends JPlugin
 				$clearing = false; 
 		}	
 		if ($clearing) { // if clearing yes then clear and end
-			echo "Clearing Jumi"; //just for testing purpose
+			//echo "Clearing Jumi"; //just for testing purpose
 			$article->text = preg_replace( $regex, '', $article->text );
 			return true;
 		} else {
-			echo "Not clearing Jumi"; //just for testing purpose
+			//echo "Not clearing Jumi"; //just for testing purpose
 		}
 
 		$continuesearching = true;
