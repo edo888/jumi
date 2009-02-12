@@ -123,9 +123,9 @@ class HTML_Jumi {
 
             // validation
             if(form.title.value == "")
-                alert( "NEEDTITLE" );
+                alert( "Application must have a title" );
             else if(form.custom_script.value == "" && form.path.value == "")
-                alert( "NEEDSCRIPT" );
+                alert( "You have to define a path to a script file OR write down a script" );
             else
                 submitform(pressbutton);
         }
@@ -144,7 +144,7 @@ class HTML_Jumi {
             <tr>
                 <td width="200" class="key">
                     <label for="title">
-                        TITLE:
+                        Title:
                     </label>
                 </td>
                 <td>
@@ -164,7 +164,7 @@ class HTML_Jumi {
             <tr>
                 <td class="key">
                     <label for="custom_script">
-                        <span onMouseOver="return overlib('<table><tr><td>CUSTOMSCRIPT<td></tr></table>', CAPTION, 'Custom Script', BELOW, RIGHT);" onMouseOut="return nd();">Custom Script:</span>
+                        <span onMouseOver="return overlib('<table><tr><td>Put here any code you want to include like php, html or javascript.<td></tr></table>', CAPTION, 'Custom Script', BELOW, RIGHT);" onMouseOut="return nd();">Custom Script:</span>
                     </label>
                 </td>
                 <td>
@@ -174,7 +174,7 @@ class HTML_Jumi {
             <tr>
                 <td class="key">
                     <label for="path">
-                        <span onMouseOver="return overlib('<table><tr><td>INCLFILE<td></tr></table>', CAPTION, 'Pathname', BELOW, RIGHT);" onMouseOut="return nd();">Pathname:</span>
+                        <span onMouseOver="return overlib('<table><tr><td>Pathname of the file to be included after the custom script. If you are using Jumi arguments in the included file just define $jumi[] array in Custom script above.<td></tr></table>', CAPTION, 'Pathname', BELOW, RIGHT);" onMouseOut="return nd();">Pathname:</span>
                     </label>
                 </td>
                 <td>
