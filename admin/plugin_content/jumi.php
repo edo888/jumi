@@ -26,47 +26,17 @@ class plgContentJumi extends JPlugin
 
 	function onPrepareContent(&$article, &$params, $limitstart)
 	{
-	  // just startup
+	  //Just startup
 	  global $mainframe;
 	  $plugin =& JPluginHelper::getPlugin('content', 'jumi');
 	  $pluginParams = new JParameter( $plugin->params );
 	  $regex = '%\{jumi\b[^}]?(\S*?)\}([\S\s]*?)\{/jumi\}%'; // Jumi expression to search for
 	  $debug = $pluginParams->get( 'debug_mode');
 
-		//Clear the Jumi code and syntax from the article in the frontend?
-	  //jimport( 'joomla.application.component.helper' );	
-		switch ($pluginParams->get( 'clear_code')) {
-			case '0':
-				$clearing = true;
-			  $aagid = $this->getGroupIdFromType($article->usertype); //article autor group id
-				$config	= JComponentHelper::getParams( 'com_content' );
-				$filterGroups	=  $config->get( 'filter_groups' ); //$params->_registry[_default][data]->filter_groups;
-				$filterType		= $config->get( 'filter_type' ); //$params->_registry[_default][data]->filter_type;
-				if ((is_array($filterGroups) && in_array( $aagid, $filterGroups )) || (!is_array($filterGroups) && $aagid == $filterGroups)) {
-					if ($filterType == 'WL') {
-						$clearing = false;
-					}
-				} else {
-					if ($filterType != 'WL') {
-						$clearing = false;
-					}
-				}
-			break;
-			case '1':
-				$clearing = true;
-			break;
-			case '2':
-				$clearing = false;
-			break;
-			default:
-				$clearing = false; 
-		}	
-		if ($clearing) { // if clearing yes then clear and end
-			//echo "Clearing Jumi"; //just for testing purpose
+		//Clear the Jumi code and syntax from the article in the frontend? If yes then clear and end
+		if ($this->getClearing( $pluginParams->get( 'clear_code'), $this->getGroupIdFromType($article->usertype) )) {
 			$article->text = preg_replace( $regex, '', $article->text );
 			return true;
-		} else {
-			//echo "Not clearing Jumi"; //just for testing purpose
 		}
 
 		$continuesearching = true;
@@ -76,47 +46,17 @@ class plgContentJumi extends JPlugin
 			$result = array();
 			$matches_found = preg_match_all( $regex, $article->text, $result, PREG_SET_ORDER );
 			if ($matches_found) {
-				// cycle through all jumi instancies.
-				for ($matchi = 0; $matchi < count($result); $matchi++) {
-			    //Following syntax {jumi stored_code_source}code_written{/jumi}. NO {jumi}{/jumi} in code_written please!
+				for ($matchi = 0; $matchi < count($result); $matchi++) { //cycle through all jumi instancies.
+			    //Sewing code written and code stored together to output
 					$storage_source = $this->getStorageSource(trim($result[$matchi][1]), $pluginParams->def('default_absolute_path',JPATH_ROOT)); //filepathname or record id or ""
 					$code_written = $result[$matchi][2]; //raw code written or ""
-					$output = ''; // Jumi output
-					if($code_written == '' && $storage_source == '') { //if nothing to show
-					  $output = ($debug == 0) ? 'dbgerr' : '<div style="color:#FF0000;background:#FFFF00;">'.JText::_('ERROR_CONTENT').'</div>';
-					} else { // buffer output
-						ob_start();
-						if($code_written != ''){ //if code written
-							$code_written = JumiCoder::cleanRubbish($code_written);
-							$code_written = JumiCoder::decode($code_written, 0);
-			    		eval ("?>".$code_written); //include code written
-						}
-			  		if($storage_source != ''){ //if record id or filepathname
-							if(is_int($storage_source)){ //if record id
-			    		  $code_stored = $this->getCodeStored($storage_source);
-			      		if($code_stored != null){
-									eval ('?>'.$code_stored);//include record
-			      		} else {
-									$output = ($debug == 0) ? 'dbgerr' : '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD', $storage_source).'</div>';
-			      		}
-			      	} else { //if file
-			      		if(is_readable($storage_source)) {
-									include($storage_source); //include file
-			      		} else {
-									$output = ($debug == 0) ? 'dbgerr' : '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE', $storage_source).'</div>';
-			      		}
-							}
-			  		}
-			  	if ($output == ''){ //if there are no errors
-			  		// $output = str_replace( '$' , '\$' , ob_get_contents()); fixed joomla bug
-			  		$output = ob_get_contents();
-			  	} elseif ($output == 'dbgerr'){
-			  		$output = '';
-			  	}
+					$output = $this->getOutput($code_written, $storage_source, $debug);
+					//Final replacement of $regex (i.e. {jumi}) in $article->text by eval $output
+					ob_start();
+					eval("?>".$output);
+					$output = str_replace( '$' , '\$' , ob_get_contents()); //fixed joomla bug
 					ob_end_clean();
-				}
-				// final replacement of $regex (i.e. {jumi}) in $article->text by $output
-				$article->text = preg_replace($regex, $output, $article->text, 1);
+					$article->text = preg_replace($regex, $output, $article->text, 1);
 				}
 				if ($pluginParams->get('nested_replace') == 0) {
 		  		$continuesearching = false;
@@ -150,12 +90,74 @@ class plgContentJumi extends JPlugin
   	return '';
 		}
 	}
-
+	
 	function getGroupIdFromType($type) 
 	{ //returns user group id from its type or null
 		$database	=& JFactory::getDBO();
 		$database->setQuery( 'SELECT id FROM #__core_acl_aro_groups WHERE name = "'.$type.'"' );
 		return $database->loadResult();
+	}
+	
+	function getOutput($code_written, $storage_source, $debug) 
+	{ //returns Jumi $output
+		$output = ''; // Jumi output
+		if($code_written == '' && $storage_source == '') { //if nothing to show
+		  $output = ($debug == 0) ? '' : '<div style="color:#FF0000;background:#FFFF00;">'.JText::_('ERROR_CONTENT').'</div>';
+		} else { // buffer code to $output
+			if($code_written != ''){ //if code written
+				$code_written = JumiCoder::cleanRubbish($code_written);
+				$code_written = JumiCoder::decode($code_written, 0);
+    		$output .= $code_written; //include code written
+			}
+  		if($storage_source != ''){ //if record id or filepathname
+				if(is_int($storage_source)){ //if record id
+    		  $code_stored = $this->getCodeStored($storage_source);
+      		if($code_stored != null){
+						$output .= $code_stored; //include record
+      		} else {
+						$output = ($debug == 0) ? '' : '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD', $storage_source).'</div>';
+      		}
+      	} else { //if file
+      		if(is_readable($storage_source)) {
+						$output .= file_get_contents($storage_source); //include file
+      		} else {
+						$output = ($debug == 0) ? '' : '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE', $storage_source).'</div>';
+      		}
+				}
+  		}
+  	}
+		return $output;
+	}
+	
+	function getClearing($clear_switch, $aagid)
+	{ //decides wheather clear (filter out) Jumi syntax from the article or not
+		//aagid: article autor group id
+		switch ($clear_switch) {
+			case '0':
+				$clearing = true;
+				$config	= JComponentHelper::getParams( 'com_content' );
+				$filterGroups	=  $config->get( 'filter_groups' ); //$params->_registry[_default][data]->filter_groups;
+				$filterType		= $config->get( 'filter_type' ); //$params->_registry[_default][data]->filter_type;
+				if ((is_array($filterGroups) && in_array( $aagid, $filterGroups )) || (!is_array($filterGroups) && $aagid == $filterGroups)) {
+					if ($filterType == 'WL') {
+						$clearing = false;
+					}
+				} else {
+					if ($filterType != 'WL') {
+						$clearing = false;
+					}
+				}
+			break;
+			case '1':
+				$clearing = true;
+			break;
+			case '2':
+				$clearing = false;
+			break;
+			default:
+				$clearing = false; 
+		}	
+		return $clearing;
 	}
 
 }
