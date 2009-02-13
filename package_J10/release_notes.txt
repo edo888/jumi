@@ -3,7 +3,7 @@ Developer's web pages: http://edo.webmaster.am
 Downloads and guides: http://jumi.vedeme.cz
 Tips and tricks: http://edo.webmaster.am/jumi
 ================================
-Version 2.0.0d
+Version 2.0.d
 Release date: 2009/02/14
 ================================
 This is the next generation Jumi for Joomla! 1.0. It is based on previous versions of Jumi Module, Plugin and on Jumo component for Joomla 1.5.
