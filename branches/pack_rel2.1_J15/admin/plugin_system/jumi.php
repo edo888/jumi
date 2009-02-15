@@ -10,55 +10,61 @@
 
 defined('_JEXEC') or die( "Direct Access Is Not Allowed" );
 // Import library dependencies
-jimport('joomla.event.plugin');
+jimport( 'joomla.plugin.plugin' );
 require_once( dirname( __FILE__ ).DS.'jumi'.DS.'class.jumicoder.php' );
 
-class plgContentJumi extends JPlugin
+class plgSystemJumi extends JPlugin
 {
-	function plgContentJumi( &$subject )
+	var $regex = '%\{jumi\b[^}]?(\S*?)\}([\S\s]*?)\{/jumi\}%';
+	var $debug;
+	var $pluginParams;
+	
+  function plgSystemJumi( &$subject, $config ) //constuctor
+  {
+  	global $mainframe, $_JUMI_ROOT;
+  	parent::__construct($subject, $config);
+			//parent::__construct( $subject );
+		 $this->loadLanguage( );
+			//$option	= JRequest::getCmd( 'option' );
+  	JPlugin::loadLanguage('plg_system_jumi', JPATH_ADMINISTRATOR);
+  	JPlugin::loadLanguage('plg_system_jumi');
+		$this->_plugin = JPluginHelper::getPlugin( 'system', 'jumi' );
+		$this->pluginParams = new JParameter( $this->_plugin->params );
+		$this->debug = $this->pluginParams->get( 'debug_mode');
+		//Jumi root for files inclusion is GLOBAL for all Jumi extensions
+		$_JUMI_ROOT = $this->pluginParams->def('jumi_root', JPATH_ROOT);
+  }
+  
+  function onPrepareContent( &$article ) //Articles, Sections desc., Categories desc.
 	{
-	  parent::__construct( $subject );
-	  // load plugin parameters and language file
-	  $this->_plugin = JPluginHelper::getPlugin( 'content', 'jumi' );
-	  $this->_params = new JParameter( $this->_plugin->params );
-	  JPlugin::loadLanguage('plg_content_jumi', JPATH_ADMINISTRATOR);
-	}
-
-	function onPrepareContent(&$article, &$params, $limitstart)
-	{
-	  //Just startup
-	  global $mainframe;
-	  $plugin =& JPluginHelper::getPlugin('content', 'jumi');
-	  $pluginParams = new JParameter( $plugin->params );
-	  $regex = '%\{jumi\b[^}]?(\S*?)\}([\S\s]*?)\{/jumi\}%'; // Jumi expression to search for
-	  $debug = $pluginParams->get( 'debug_mode');
+		global $mainframe, $_JUMI_ROOT;
+	  $nested = $this->pluginParams->get('nested_replace');
 
 		//Clear the Jumi code and syntax from the article in the frontend? If yes then clear and end
-		if ($this->getClearing( $pluginParams->get( 'clear_code'), $this->getGroupIdFromType($article->usertype) )) {
-			$article->text = preg_replace( $regex, '', $article->text );
+		if ($this->getClearing( $this->pluginParams->get( 'clear_code'), $this->getGroupIdFromType($article->usertype) )) {
+			$article->text = preg_replace( $this->regex, '', $article->text );
 			return true;
 		}
-
-		$continuesearching = true;
-		//Nesting loop. NO {jumi}{/jumi} in code_written please!
+	  
+		$continuesearching = true; //Nesting loop. NO {jumi}{/jumi} in code_written please!
     while ($continuesearching){
 			// find all instances of $regex (i.e. jumi syntax) in an article and put them in $result
 			$result = array();
-			$matches_found = preg_match_all( $regex, $article->text, $result, PREG_SET_ORDER );
+			$matches_found = preg_match_all( $this->regex, $article->text, $result, PREG_SET_ORDER );
 			if ($matches_found) {
 				for ($matchi = 0; $matchi < count($result); $matchi++) { //cycle through all jumi instancies.
 			    //Sewing code written and code stored together to output
-					$storage_source = $this->getStorageSource(trim($result[$matchi][1]), $pluginParams->def('default_absolute_path',JPATH_ROOT)); //filepathname or record id or ""
+					$storage_source = $this->getStorageSource(trim($result[$matchi][1])); //filepathname or record id or ""
 					$code_written = $result[$matchi][2]; //raw code written or ""
-					$output = $this->getOutput($code_written, $storage_source, $debug);
-					//Final replacement of $regex (i.e. {jumi}) in $article->text by eval $output
+					$output = $this->getOutput($code_written, $storage_source, $this->debug);
+					//Final replacement of $regex (i.e. {jumi ...}...{/jumi}) in $article->text by eval $output
 					ob_start();
 					eval("?>".$output);
 					$output = str_replace( '$' , '\$' , ob_get_contents()); //fixed joomla bug
 					ob_end_clean();
-					$article->text = preg_replace($regex, $output, $article->text, 1);
+					$article->text = preg_replace($this->regex, $output, $article->text, 1);
 				}
-				if ($pluginParams->get('nested_replace') == 0) {
+				if ($nested == 0) {
 		  		$continuesearching = false;
 		  	}
 			} else {
@@ -67,7 +73,21 @@ class plgContentJumi extends JPlugin
 		}
 		return true;
 	}
-
+	
+	function onAfterDispatch() //Feeds
+	{
+		global $mainframe;
+		$docu	=& JFactory::getDocument();
+		$docuType = $docu->getType(); //feed, html, pdf
+		if ( $docuType == 'feed' && isset( $docu->items ) ) { // then replace it with some text
+			for ( $i = 0; $i <= count( $docu->items ); $i++ ) {
+				if ( isset( $docu->items[$i]->description ) ) {
+					$docu->items[$i]->description = preg_replace( $this->regex, 'Here is the Jumi feed code', $docu->items[$i]->description, 1 );
+				}
+			}
+		}		
+	}
+	/////////////////////custom methods //////////////////////////////
 	function getCodeStored($source)
 	{ //returns code stored in the database or null.
 		$database  = &JFactory::getDBO();
@@ -77,14 +97,15 @@ class plgContentJumi extends JPlugin
 		return $database->loadResult();
 	}
 	
-	function getStorageSource($source, $abspath)
+	function getStorageSource($source)
 	{ //returns filepathname or a record id or ""
+  	global $_JUMI_ROOT;
   	$storage=trim($source);
   	if ($storage!=""){
 			if ($id = substr(strchr($storage,"*"),1)) { //if record id return it
   			return (int)$id;
   		} else { // else return filepathname
-  		return $abspath.DS.$storage;
+  		return $GLOBALS['_JUMI_ROOT'].DS.$storage;
   		}
   	}	else { // else return ""
   	return '';

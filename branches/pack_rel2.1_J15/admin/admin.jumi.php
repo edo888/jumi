@@ -369,12 +369,12 @@ class JumiView {
             </tr>
             <tr>
                 <td class="key">
-                
-                    <label for="path">
+                      <label for="path">
                         <?php echo JHTML::_('tooltip', JTEXT::_('INCLFILE')); ?> <?php echo JText::_( 'Pathname' ); ?>:
                     </label>
                 </td>
                 <td>
+                		<?php echo (isset($GLOBALS['_JUMI_ROOT'])) ? $GLOBALS['_JUMI_ROOT'].DS : JPATH_ROOT.DS; ?><br />
                     <input class="inputbox" type="text" name="path" id="path" size="60" value="<?php echo @$row->path; ?>" />
                 </td>
             </tr>

@@ -20,7 +20,7 @@ class modJumiHelper
     		return (int)$id;
     	}
     	else { // else return filepathname
-    		return $params->def('default_absolute_path',JPATH_ROOT).DS.$storage;
+    		return isset($GLOBALS['_JUMI_ROOT']) ? $GLOBALS['_JUMI_ROOT'].DS.$storage : JPATH_ROOT.DS.$storage;
     	}
     }
     else {

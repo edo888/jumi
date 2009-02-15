@@ -2,7 +2,7 @@
 <install version="1.5" type="plugin" group="editors-xtd">
 	<name>Editor Button - Jumicoder</name>
 	<author>Martin Hajek</author>
-	<creationDate>January 2009</creationDate>
+	<creationDate>February 2009</creationDate>
 	<version>2.1.0</version>
   <copyright>Copyright (c) 2006 - 2008 Martin Hajek. All rights reserved.</copyright>
   <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
