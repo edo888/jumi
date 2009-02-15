@@ -3,12 +3,12 @@
 <install type="component" version="1.5.0">
     <name>Jumi</name>
     <author>Edvard Ananyan</author>
-    <creationDate>December 2008</creationDate>
-    <copyright>Copyright (c) 2008 - Edvard Ananyan. All rights reserved.</copyright>
+    <creationDate>February 2009</creationDate>
+    <copyright>Copyright (c) 2008-2009 Edvard Ananyan. All rights reserved.</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>edo888@gmail.com</authorEmail>
     <authorUrl>http://edo.webmaster.am/</authorUrl>
-    <version>2.0.1</version>
+    <version>2.1.0</version>
     <description><![CDATA[This component includes custom scripts (html, php, js, css, ...) into Joomla! pages.<br />Collaboration between multiple Joomla! pages and other Jumi extensions is easy.<br />For Jumi downloads and guides visit <a href="http://jumi.vedeme.cz" target="_blank">http://jumi.vedeme.cz</a><br />For Jumi demos, tips and tricks visit <a href="http://edo.webmaster.am/jumi" target="_blank">http://edo.webmaster.am/jumi</a>]]></description>
 
     <files>
@@ -36,7 +36,7 @@
     </uninstall>
 
     <url>
-        <linkparts name="fileid" type="sql" default="1" label="Select Application" query="SELECT id, title FROM #__jumi" key_field="id" value_field="title" description="PARAMFILE" />
+        <linkparts name="fileid" type="sql" default="1" label="FILE" query="SELECT id, title FROM #__jumi" key_field="id" value_field="title" description="PARAMFILE" />
     </url>
 
     <administration>
@@ -52,37 +52,35 @@
             <filename>index.html</filename>
             <filename>images/jumi.png</filename>
             <filename>images/index.html</filename>
+
             <filename>module/index.html</filename>
             <filename>module/helper.php</filename>
             <filename>module/mod_jumi.xml</filename>
             <filename>module/mod_jumi.php</filename>
             <filename>module/jumi_demo.php</filename>
             <filename>module/tmpl/index.html</filename>
+            <filename>module/tmpl/info.php</filename>
             <filename>module/tmpl/default.php</filename>
             <filename>module/language/en-GB.mod_jumi.ini</filename>
-            <filename>module/language/ru-RU.mod_jumi.ini</filename>
-            <filename>module/language/cs-CZ.mod_jumi.ini</filename>
-            <filename>module/language/hy-AM.mod_jumi.ini</filename>
-            <filename>module/language/es-ES.mod_jumi.ini</filename>
-            <filename>plugin_content/jumi.php</filename>
-            <filename>plugin_content/jumi.xml</filename>
-            <filename>plugin_content/jumi/index.html</filename>
-            <filename>plugin_content/jumi/jumi_demo.php</filename>
-            <filename>plugin_content/jumi/class.jumicoder.php</filename>
-            <filename>plugin_content/language/en-GB.plg_content_jumi.ini</filename>
-            <filename>plugin_content/language/ru-RU.plg_content_jumi.ini</filename>
-            <filename>plugin_content/language/cs-CZ.plg_content_jumi.ini</filename>
-            <filename>plugin_content/language/hy-AM.plg_content_jumi.ini</filename>
-            <filename>plugin_content/language/es-ES.plg_content_jumi.ini</filename>
-						<filename>plugin_editor-xtd/jumicoder.php</filename>
-						<filename>plugin_editor-xtd/jumicoder.xml</filename>
-    				<filename>plugin_editor-xtd/jumicoder/jumicoder_form.php</filename>
-      			<filename>plugin_editor-xtd/jumicoder/jumicoder.png</filename>
-      			<filename>plugin_editor-xtd/jumicoder/jumicoder_help.php</filename>
-						<filename>plugin_editor-xtd/jumicoder/jumicoder_help.png</filename>
-      			<filename>plugin_editor-xtd/jumicoder/index.html</filename>
-  					<filename>plugin_editor-xtd/language/en-GB.plg_editors-xtd_jumicoder.ini</filename>
-  			</files>
+
+            <filename>plugin_system/jumi.php</filename>
+            <filename>plugin_system/jumi.xml</filename>
+            <filename>plugin_system/jumi/index.html</filename>
+            <filename>plugin_system/jumi/jumi_demo.php</filename>
+            <filename>plugin_system/jumi/info.php</filename>
+            <filename>plugin_system/jumi/class.jumicoder.php</filename>
+            <filename>plugin_system/language/en-GB.plg_system_jumi.ini</filename>
+
+            <filename>plugin_editor-xtd/jumicoder.php</filename>
+            <filename>plugin_editor-xtd/jumicoder.xml</filename>
+            <filename>plugin_editor-xtd/jumicoder/index.html</filename>
+            <filename>plugin_editor-xtd/jumicoder/jumicoder.png</filename>
+            <filename>plugin_editor-xtd/jumicoder/jumicoder_form.php</filename>
+            <filename>plugin_editor-xtd/jumicoder/jumicoder_help.php</filename>
+            <filename>plugin_editor-xtd/jumicoder/jumicoder_help.png</filename>
+            <filename>plugin_editor-xtd/language/en-GB.plg_editors-xtd_jumicoder.ini</filename>    
+        </files>
+        
         <languages folder="admin/language">
             <language tag="en-GB">en-GB.com_jumi.ini</language>
             <language tag="ru-RU">ru-RU.com_jumi.ini</language>

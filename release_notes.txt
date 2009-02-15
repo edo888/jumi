@@ -8,29 +8,33 @@ Release date: 2009/02/27
 ================================
 This package contains the following extensions:
     - Jumi component
-    - Jumi content plugin
+    - Jumi system plugin
     - Jumi editor-xtd (button) plugin
     - Jumi module
 
 Installation/uninstallation instructions:
 Install Jumi package as a standard Joomla! extension. All extensions contained in the package are installed automatically.
-Uninstallation of Jumi component also uninstalls Jumi module and both Jumi plugins.
+Uninstallation of Jumi component also uninstalls all other Jumi extensions (Jumi module and both Jumi plugins).
 
-Ugrades from previous versions:
-It is strictly recomended to uninstall all previous versions of any Jumi extension and install this one.
+Upgrades from previous versions:
+It is strictly recommended to uninstall all previous versions of any Jumi extension and install this one.
 
 Changes:
-    - syntax of Jumi content plugin changed to {jumi stored_code_source}code_written{/jumi}
-    - added Filtering option to content plugin by article author user groups. Security precaution.
-    - added Jumi editor-xtd (button) plugin that encodes/decodes code_written
-    - Jumi content plugin processes custom codes added directly into Joomla! articles by Jumi button
-    - added Debug mode parameter to Jumi content plugin. If Debug is set to No then no error messages are shown and the relevant Jumi syntax is cleared from the article
+		- Jumi content plugin has changed into the system plugin.
+		- Jumi plugin includes the code not only into article now, but also into section and category descriptions and pdf documents.
+		- Jumi plugin clears Jumi syntax from feeds.
+    - Jumi plugin syntax has changed to {jumi stored_code_source}code_written{/jumi}.
+    - Jumi plugin processes custom codes added directly into Joomla! content by accompanied Jumi editor-xtd plugin (editor button).
+    - Added Jumi editor-xtd plugin (editor button) that encodes/decodes code_written.
+    - For security reasons added Filtering option by article author user groups. Filtered code is not shown.
+    - Jumi Root (Default Absolute Jumi Path) for referencing included files is shared between all Jumi extensions.
+    - Added Debug mode parameter to Jumi content plugin. If Debug is set to No then no error messages are shown and the relevant Jumi syntax is cleared from the article.
 
 ================================
 Demo
 There are several demos there. All of them are installed automatically. Any one is accessible by any Jumi extension.
 Component demo: there are two component demos in Jumi table of your Joomla! database. The first one, Hello Jumi!, is automatically assign the main menu item. The second one, Blogspot, can be accessed through the previous demo or you can assign to it a menu item manually - by a standard Joomla! manner.
 Module demo file: modules/mod_jumi/jumi_demo.php
-Plugin demo file: plugins/content/jumi/jumi_demo.php
+Plugin demo file: plugins/system/jumi/jumi_demo.php
 ================================
 

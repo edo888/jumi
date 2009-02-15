@@ -1,17 +1,17 @@
 <?php
 /**
 * @version $Id$
-* @package Joomla! 1.5.x, Jumi content plugin, Jumi editors-xtd plugin
+* @package Joomla! 1.5.x, Jumi system plugin, Jumi editors-xtd plugin
 * @copyright (c) 2008 Martin Hajek
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
 *
 */
 
 define( '_JEXEC', 1 );
-define('JPATH_BASE', '../../../' );
+define('JPATH_ROOT', '../../../' );
 define('DS', DIRECTORY_SEPARATOR);
-// Jumi content plugin is required!!!
-require_once(JPATH_BASE .'plugins'.DS.'content'.DS.'jumi'.DS.'class.jumicoder.php');
+// Jumi system plugin is required!!!
+require_once(JPATH_ROOT .'plugins'.DS.'system'.DS.'jumi'.DS.'class.jumicoder.php');
 
 function JumiCoderForm()
 {

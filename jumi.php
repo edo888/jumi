@@ -27,6 +27,8 @@ eval("?>".$appl->custom_script);
 if(!empty($appl->path))
     if(is_file($appl->path))
         require($appl->path);
+    elseif(isset($GLOBALS['_JUMI_ROOT']))
+    		if (is_file($GLOBALS['_JUMI_ROOT'].DS.$appl->path))	require $GLOBALS['_JUMI_ROOT'].DS.$appl->path;
     elseif(is_file($mainframe->getCfg('absolute_path').DS.$appl->path))
         require $mainframe->getCfg('absolute_path').DS.$appl->path;
     else
