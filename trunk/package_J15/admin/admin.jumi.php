@@ -105,7 +105,7 @@ class JumiController extends JController {
         $custom_script = $db->Quote(stripslashes($_POST['custom_script']));
         $path          = $db->Quote($post['path']);
         if($applid == 0) {
-            $query = "insert into #__jumi (title, alias, custom_script, path) value($title,$alias,$custom_script,$path)";
+            $query = "insert into #__jumi (title, alias, custom_script, path) values($title,$alias,$custom_script,$path)";
             $db->setQuery($query);
             $db->query();
         } else {
@@ -142,7 +142,7 @@ class JumiController extends JController {
             $db->setQuery($query);
             $db->query();
         }
-        
+
         $this->setRedirect('index.php?option='.$option,$msg);
     }
 
@@ -204,7 +204,7 @@ class JumiController extends JController {
 
 
 class JumiView {
-    
+
     function showApplications(&$rows,&$pageNav,$option,&$lists) {
         JHTML::_('behavior.tooltip');
         ?>
@@ -321,7 +321,7 @@ class JumiView {
                 submitform(pressbutton);
                 return;
             }
-            
+
             // validation
             if(form.title.value == "")
                 alert( "<?php echo JText::_('NEEDTITLE', true ); ?>" );
@@ -369,7 +369,7 @@ class JumiView {
             </tr>
             <tr>
                 <td class="key">
-                
+
                     <label for="path">
                         <?php echo JHTML::_('tooltip', JTEXT::_('INCLFILE')); ?> <?php echo JText::_( 'Pathname' ); ?>:
                     </label>

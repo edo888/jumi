@@ -103,7 +103,7 @@ function saveApplication() {
     $custom_script = $database->Quote(stripslashes($_POST['custom_script']));
     $path          = $database->Quote($post['path']);
     if($applid == 0) {
-        $query = "insert into #__jumi (title, alias, custom_script, path) value($title,$alias,$custom_script,$path)";
+        $query = "insert into #__jumi (title, alias, custom_script, path) values($title,$alias,$custom_script,$path)";
         $database->setQuery($query);
         $database->query();
     } else {
