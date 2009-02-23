@@ -29,10 +29,10 @@ echo '<style type="text/css">
 </style>';
 
 class blog {
-    public $id;
-    public $login;
-    public $posts;
-    public $cacheTime;
+    var $id;
+    var $login;
+    var $posts;
+    var $cacheTime;
 
     function __construct($id, $login, $cacheTime) {
         $this->id = $id;
@@ -53,7 +53,11 @@ class blog {
         }
     }
 
-    public function printAllPosts() {
+    function blog($id, $login, $cacheTime)  {
+        $this->__construct($id, $login, $cacheTime);
+    }
+
+    function printAllPosts() {
         echo '<div class="blog-posts">';
         $prev_date = '';
         foreach ($this->posts->entry as $entry) {
@@ -91,7 +95,7 @@ class blog {
         echo '<small>Last updated: '.date('j M, Y H:i', filemtime('cache/'.md5('http://www.blogger.com/feeds/'.$this->id.'/posts/default'))).'</small>';
     }
 
-    public function printComments($postId) { echo ''; }
+    function printComments($postId) { echo ''; }
 
-    public function getPostId($id) {return substr($id, -19); }
+    function getPostId($id) { return substr($id, -19); }
 }
