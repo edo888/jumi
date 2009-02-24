@@ -20,3 +20,12 @@ if($plugin_uninstaller->uninstall('plugin', $jumi_plugin->id))
     echo 'Plugin uninstall success', '<br />';
 else
     echo 'Plugin uninstall failed', '<br />';
+
+// uninstalling jumi router
+$db->setQuery("select id from #__plugins where name = 'System - Jumi Router'");
+$jumi_router = $db->loadObject();
+$plugin_uninstaller = new JInstaller;
+if($plugin_uninstaller->uninstall('plugin', $jumi_router->id))
+    echo 'Router uninstall success', '<br />';
+else
+    echo 'Router uninstall failed', '<br />';
