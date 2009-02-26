@@ -8,7 +8,7 @@
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>edo888@gmail.com</authorEmail>
     <authorUrl>http://edo.webmaster.am/</authorUrl>
-    <version>2.0.2</version>
+    <version>2.0.3</version>
     <description><![CDATA[This component includes custom scripts (html, php, js, css, ...) into Joomla! pages.<br />Collaboration between multiple Joomla! pages and other Jumi extensions is easy.<br />For Jumi downloads and guides visit <a href="http://jumi.vedeme.cz" target="_blank">http://jumi.vedeme.cz</a><br />For Jumi demos, tips and tricks visit <a href="http://edo.webmaster.am/jumi" target="_blank">http://edo.webmaster.am/jumi</a>]]></description>
 
     <files>

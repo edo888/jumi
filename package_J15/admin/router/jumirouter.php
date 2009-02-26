@@ -47,42 +47,42 @@ class  plgSystemJumiRouter extends JPlugin {
         $uri    =& JURI::getInstance();
         $router =& $mainframe->getRouter();
 
-        $router->attachParseRule('plgSystemJumiRouter::parseJumiRouter');
+        $router->attachParseRule('parseJumiRouter');
 
     }
+}
 
-    /**
-     * SEF url parser
-     *
-     * @access public
-     * @static
-     * @param $router object of JRouter class
-     * @param $uri object of JURI class
-     */
-    static function parseJumiRouter(& $router, & $uri) {
-        if($router->getMode() == JROUTER_MODE_RAW)
-            return array();
+/**
+ * SEF url parser
+ *
+ * @access public
+ * @static
+ * @param $router object of JRouter class
+ * @param $uri object of JURI class
+ */
+function parseJumiRouter(& $router, & $uri) {
+    if($router->getMode() == JROUTER_MODE_RAW)
+        return array();
 
-        $db =& JFactory::getDBO();
-        $db->setQuery('select id, title, alias from #__jumi where published = 1');
-        $apps = $db->loadRowList();
-        $alias = array();
-        foreach($apps as $i=>$app) {
-            if(empty($app[2]))
-                $apps[$i][2] = JFilterOutput::stringURLSafe($app[1]);
-            $alias[$i] = $apps[$i][2];
+    $db =& JFactory::getDBO();
+    $db->setQuery('select id, title, alias from #__jumi where published = 1');
+    $apps = $db->loadRowList();
+    $alias = array();
+    foreach($apps as $i=>$app) {
+        if(empty($app[2]))
+            $apps[$i][2] = JFilterOutput::stringURLSafe($app[1]);
+        $alias[$i] = $apps[$i][2];
+    }
+
+    $segments = explode('/', $uri->getPath());
+    foreach($segments as $i => $segment)
+        if(($j = array_search($segment, $alias)) !== false) {
+            unset($segments[$i]);
+            $uri->setVar('option', 'com_jumi');
+            $uri->setVar('fileid', $apps[$j][0]);
         }
 
-        $segments = explode('/', $uri->getPath());
-        foreach($segments as $i => $segment)
-            if(($j = array_search($segment, $alias)) !== false) {
-                unset($segments[$i]);
-                $uri->setVar('option', 'com_jumi');
-                $uri->setVar('fileid', $apps[$j][0]);
-            }
+    $uri->setPath(implode('/', $segments));
 
-        $uri->setPath(implode('/', $segments));
-
-        return array();
-    }
+    return array();
 }
