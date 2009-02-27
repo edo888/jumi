@@ -3,8 +3,8 @@ Developer's web pages: http://edo.webmaster.am
 Downloads and guides: http://jumi.vedeme.cz
 Tips and tricks: http://edo.webmaster.am/jumi
 ================================
-Version 2.0.2
-Release date: 2009/02/25
+Version 2.0.3
+Release date: 2009/02/27
 ================================
 This package contains the following extensions:
     - Jumi component
@@ -20,9 +20,7 @@ Upgrades from previous versions:
 It is recommended to uninstall all previous versions of any Jumi extension and install this one.
 
 Changes:
-		- Added: Jumi system SEF router plugin that enables SEF direct accessing of Jumi application with it's alias (e.g. http://www.mysite.com/hello-jumi)
-		- Fixed: problems of the component on systems running MySQL 4
-		- Added: plugins are automatically set to on after the installation
+    - Fixed: problems with Jumi SEF router plugin on systems running PHP4
 ================================
 Demo
 There are several demos there. All of them are installed automatically. Any one is accessible by any Jumi extension.
