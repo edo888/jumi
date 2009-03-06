@@ -22,7 +22,7 @@ class plgContentJumi extends JPlugin
 	  JPlugin::loadLanguage('plg_content_jumi', JPATH_ADMINISTRATOR);
 	}
 
-	function onPrepareContent(&$article, &$params, $limitstart)
+	function onPrepareContent(&$article, &$params, $limitstart=0)
 	{
 	  // just startup
 	  global $mainframe;
