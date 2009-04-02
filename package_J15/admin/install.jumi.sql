@@ -18,4 +18,4 @@ INSERT INTO `#__jumi` VALUES (2, 'Blogspot', 'blogspot', 'components/com_jumi/fi
 
 ALTER TABLE #__components AUTO_INCREMENT = 1;
 
-INSERT INTO `#__menu` (menutype,name,alias,link,type,published,parent,componentid,sublevel,ordering,checked_out,checked_out_time,pollid,browserNav,access,utaccess,params,lft,rgt,home) VALUES ('mainmenu','Hello Jumi!','hello-jumi','index.php?option=com_jumi&fileid=1','component','1','0',(select max(id)+1 from `#__components`),'0','0','0','0000-00-00 00:00:00','0','0','0','0','','0','0','0');
+INSERT INTO `#__menu` (menutype,name,alias,link,type,published,parent,componentid,sublevel,ordering,checked_out,checked_out_time,pollid,browserNav,access,utaccess,params,lft,rgt,home) VALUES ('mainmenu','Hello Jumi!','hello-jumi','index.php?option=com_jumi&fileid=1','component','0','0',(select max(id)+1 from `#__components`),'0','0','0','0000-00-00 00:00:00','0','0','0','0','','0','0','0');

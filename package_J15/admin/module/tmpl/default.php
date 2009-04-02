@@ -1,6 +1,6 @@
 <?php
 /**
-* @version $Id: default.php 19 2008-11-21 21:28:28Z martin2hajek $
+* @version $Id: default.php 92 2009-02-15 17:08:02Z martin2hajek $
 * @package Joomla! 1.5
 * @copyright (c) 2008 Martin Hajek
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
@@ -16,17 +16,23 @@ if($code_written.$storage_source != '') { //something to show
       if($code_stored != null) {
 				eval ('?>'.$code_stored); //include custom script written
       } else {
-				echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD', $storage_source).'</div>';
+				if ($debug != 0){
+					echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_RECORD', $storage_source).'</div>';
+				}
       }
     } else { //it is file
       if(is_readable($storage_source)) {
 				include($storage_source); //include file
       } else {
-				echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE', $storage_source).'</div>';
+					if ($debug != 0){
+						echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_FILE', $storage_source).'</div>';
+					}
       }
     }
   }
 } else { //nothing to show
-  echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_CONTENT').'</div>';
+		if ($debug != 0){
+  		echo '<div style="color:#FF0000;background:#FFFF00;">'.JText::sprintf('ERROR_CONTENT').'</div>';
+  	}
 }
 ?>
