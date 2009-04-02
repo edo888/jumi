@@ -1,6 +1,6 @@
 <?php
 /**
-* @version $Id: helper.php 10 2008-10-30 10:50:25Z martin2hajek $
+* @version $Id: helper.php 92 2009-02-15 17:08:02Z martin2hajek $
 * @package Joomla! 1.5
 * @copyright (c) 2008 Martin Hajek
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
@@ -20,7 +20,7 @@ class modJumiHelper
     		return (int)$id;
     	}
     	else { // else return filepathname
-    		return $params->def('default_absolute_path',JPATH_ROOT).DS.$storage;
+    		return isset($GLOBALS['_JUMI_ROOT']) ? $GLOBALS['_JUMI_ROOT'].DS.$storage : JPATH_ROOT.DS.$storage;
     	}
     }
     else {
@@ -29,9 +29,9 @@ class modJumiHelper
 	}	
 	function getCodeStored($source){ //returns code stored in the database or null.
 		$database  = &JFactory::getDBO();
-		//$user      = &JFactory::getUser();
-		//$database->setQuery("select custom_script from #__jumi where id = '{$source}' and access <= {$user->gid} and published = 1");
-		$database->setQuery("select custom_script from #__jumi where id = $source");
+		$user      = &JFactory::getUser();
+		$database->setQuery("select custom_script from #__jumi where id = '{$source}' and access <= {$user->gid} and published = 1");
+		//$database->setQuery("select custom_script from #__jumi where id = $source"); //all records, all users
 		return $database->loadResult();
 	}
 }

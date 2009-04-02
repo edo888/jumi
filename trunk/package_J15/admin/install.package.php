@@ -8,12 +8,19 @@ if($module_installer->install(dirname(__FILE__).DS.'module'))
 else
     echo 'Module install failed', '<br />';
 
-// installing plugin
+// installing system plugin
 $plugin_installer = new JInstaller;
-if($plugin_installer->install(dirname(__FILE__).DS.'plugin'))
-    echo 'Plugin install success', '<br />';
+if($plugin_installer->install(dirname(__FILE__).DS.'plugin_system'))
+    echo 'System plugin install success', '<br />';
 else
-    echo 'Plugin install failed', '<br />';
+    echo 'System plugin install failed', '<br />';
+
+// installing editor-xtd plugin
+$plugin_installer = new JInstaller;
+if($plugin_installer->install(dirname(__FILE__).DS.'plugin_editor-xtd'))
+    echo 'Editor-xtd plugin install success', '<br />';
+else
+    echo 'Editor-xtd plugin install failed', '<br />';
 
 // installing router
 $plugin_installer = new JInstaller;
@@ -22,9 +29,14 @@ if($plugin_installer->install(dirname(__FILE__).DS.'router'))
 else
     echo 'Router install failed', '<br />';
 
-// enabling plugin
+// enabling system plugin
 $db =& JFactory::getDBO();
-$db->setQuery('update #__plugins set published = 1 where element = "jumi" and folder = "content"');
+$db->setQuery('update #__plugins set published = 1 where element = "jumi" and folder = "system"');
+$db->query();
+
+// enabling editor-xtd plugin
+$db =& JFactory::getDBO();
+$db->setQuery('update #__plugins set published = 1 where element = "jumicoder" and folder = "editors-xtd"');
 $db->query();
 
 // enabling router
