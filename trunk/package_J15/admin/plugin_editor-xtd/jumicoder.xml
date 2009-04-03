@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install version="1.5" type="plugin" group="editors-xtd">
-    <name>Editor Button - Jumicoder</name>
+    <name>Button - Jumicoder</name>
     <author>Martin Hajek</author>
-    <creationDate>February 2009</creationDate>
-    <version>2.1.0</version>
-    <copyright>Copyright (c) 2006 - 2008 Martin Hajek. All rights reserved.</copyright>
+    <creationDate>April 2009</creationDate>
+    <version>2.1.0 beta</version>
+    <copyright>Copyright (c) 2009 Martin Hajek. All rights reserved.</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>admin@vedeme.cz</authorEmail>
     <authorUrl>http://jumi.vedeme.cz</authorUrl>

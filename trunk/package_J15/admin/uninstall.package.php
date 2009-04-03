@@ -3,7 +3,7 @@ defined("_JEXEC") or die("Restricted access");
 
 $uninstaller = new InstallerController;
 
-// uninstalling jumi module
+// uninstalling Jumi module
 $db->setQuery("select id from #__modules where title = 'Jumi'");
 $jumi_module = $db->loadObject();
 $module_uninstaller = new JInstaller;
@@ -12,16 +12,25 @@ if($module_uninstaller->uninstall('module', $jumi_module->id))
 else
     echo 'Module uninstall failed', '<br />';
 
-// uninstalling jumi plugin
-$db->setQuery("select id from #__plugins where name = 'Jumi'");
+// uninstalling Jumi system plugin
+$db->setQuery("select id from #__plugins where name = 'System - Jumi'");
 $jumi_plugin = $db->loadObject();
 $plugin_uninstaller = new JInstaller;
 if($plugin_uninstaller->uninstall('plugin', $jumi_plugin->id))
-    echo 'Plugin uninstall success', '<br />';
+    echo 'System plugin uninstall success', '<br />';
 else
-    echo 'Plugin uninstall failed', '<br />';
+    echo 'System plugin uninstall failed', '<br />';
 
-// uninstalling jumi router
+// uninstalling jumi editor-xtd plugin
+$db->setQuery("select id from #__plugins where name = 'Button - Jumicoder'");
+$jumi_plugin = $db->loadObject();
+$xtd_plugin_uninstaller = new JInstaller;
+if($xtd_plugin_uninstaller->uninstall('plugin', $jumi_plugin->id))
+    echo 'Editor-xtd plugin uninstall success', '<br />';
+else
+    echo 'Editor-xtd plugin uninstall failed', '<br />';
+
+// uninstalling Jumi router
 $db->setQuery("select id from #__plugins where name = 'System - Jumi Router'");
 $jumi_router = $db->loadObject();
 $plugin_uninstaller = new JInstaller;

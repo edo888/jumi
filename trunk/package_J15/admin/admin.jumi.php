@@ -375,6 +375,7 @@ class JumiView {
                     </label>
                 </td>
                 <td>
+                	<?php echo (isset($GLOBALS['_JUMI_ROOT'])) ? $GLOBALS['_JUMI_ROOT'].DS : JPATH_ROOT.DS; ?><br />
                     <input class="inputbox" type="text" name="path" id="path" size="60" value="<?php echo @$row->path; ?>" />
                 </td>
             </tr>
