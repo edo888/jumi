@@ -9,7 +9,7 @@
     <authorEmail>edo888@gmail.com</authorEmail>
     <authorUrl>http://edo.webmaster.am/</authorUrl>
     <version>2.1.0 beta</version>
-    <description><![CDATA[This component includes custom scripts (html, php, js, css, ...) into Joomla! pages.<br />Collaboration between multiple Joomla! pages and other Jumi extensions is easy.<br />For Jumi downloads and guides visit <a href="http://jumi.vedeme.cz" target="_blank">http://jumi.vedeme.cz</a><br />For Jumi demos, tips and tricks visit <a href="http://edo.webmaster.am/jumi" target="_blank">http://edo.webmaster.am/jumi</a>]]></description>
+    <description><![CDATA[This component includes custom scripts (html, php, js, css, ...) into Joomla! pages.<br />Collabration between multiple Jumi component pages as well as collaboration with other Jumi extensions is quite easy.<br />For Jumi downloads and guides visit <a href="http://jumi.vedeme.cz" target="_blank">http://jumi.vedeme.cz</a><br />For Jumi demos, tips and tricks visit <a href="http://edo.webmaster.am/jumi" target="_blank">http://edo.webmaster.am/jumi</a>]]></description>
 
     <files>
         <filename>jumi.php</filename>
@@ -36,7 +36,7 @@
     </uninstall>
 
     <url>
-        <linkparts name="fileid" type="sql" default="1" label="FILE" query="SELECT id, title FROM #__jumi" key_field="id" value_field="title" description="PARAMFILE" />
+        <linkparts name="fileid" type="sql" default="1" label="Application" query="SELECT id, title FROM #__jumi" key_field="id" value_field="title" description="PARAMFILE" />
     </url>
 
     <administration>
