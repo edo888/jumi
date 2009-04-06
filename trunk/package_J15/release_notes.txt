@@ -23,14 +23,15 @@ It is recommended to uninstall all previous versions of any Jumi extension and i
 
 Main changes:
     - Jumi content plugin has changed into the system plugin.
-    - Jumi plugin includes the code not only into article now, but also into section and category descriptions and pdf documents.
+    - Jumi plugin includes the code not only into article now, but also into section and category descriptions.
+		- Codes included via Jumi plugin are rendered in PDF articles.
     - Jumi plugin clears Jumi syntax from feeds.
     - Jumi plugin syntax has changed to {jumi stored_code_source}code_written{/jumi}.
     - Jumi plugin processes custom codes added directly into Joomla! content by accompanied Jumi editor-xtd plugin (editor button).
     - Added Jumi editor-xtd plugin (editor button) that encodes/decodes code_written.
     - For security reasons added Filtering option by article author user groups. Filtered code is not shown.
     - Jumi Root (Default Absolute Jumi Path) for referencing included files is shared between all Jumi extensions.
-    - Added Debug mode parameter to Jumi content plugin. If Debug is set to No then no error messages are shown and the relevant Jumi syntax is cleared from the article.
+    - Added Debug mode parameter to plugin and module. If Debug is set to No then no Jumi error messages are shown in the frontend; in case of Jumi error you will see nothing instead.
 
 ================================
 Demo
