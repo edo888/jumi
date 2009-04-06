@@ -1,0 +1,18 @@
+#summary Jumi roadmap and wishlist
+
+= Intro =
+
+Here we present our Jumi short, mid and long term plans and wishes.
+
+== Current version improvements ==
+Ideas for immediate implementation.
+
+== Next release improvements ==
+Good ideas but for the next release.
+
+== Roadmap ==
+Long term plans.
+
+== Wishes ==
+Someday, somehow, something.
+  * Automatic content plugin. Inserts a code (written, database, file) into all permitted articles automatically. Persmission filtered (blacklist/whitelist) by Sections, Categories and article IDs. 
