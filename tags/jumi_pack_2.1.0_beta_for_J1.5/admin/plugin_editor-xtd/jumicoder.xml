@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="editors-xtd">
+    <name>Button - Jumicoder</name>
+    <author>Martin Hajek</author>
+    <creationDate>April 2009</creationDate>
+    <version>2.1.0 beta</version>
+    <copyright>Copyright (c) 2009 Martin Hajek. All rights reserved.</copyright>
+    <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+    <authorEmail>admin@vedeme.cz</authorEmail>
+    <authorUrl>http://jumi.vedeme.cz</authorUrl>
+    <description>JUMICODERDESC</description>
+
+    <files>
+        <filename plugin="jumicoder">jumicoder.php</filename>
+        <filename>jumicoder/jumicoder_form.php</filename>
+        <filename>jumicoder/jumicoder.png</filename>
+        <filename>jumicoder/jumicoder_help.php</filename>
+        <filename>jumicoder/jumicoder_help.png</filename>
+        <filename>jumicoder/index.html</filename>
+    </files>
+
+    <languages folder="language">
+        <language tag="en-GB">en-GB.plg_editors-xtd_jumicoder.ini</language>
+    </languages>
+</install>
