@@ -9,6 +9,7 @@ Ideas for immediate implementation.
 
 == Next release improvements ==
 Good ideas but for the next release.
+  * Uninstall/install component. An uninstall component option: drop or leave Jumi database table. An install If: if database table exists then leave it else create new and insert demo.
 
 == Roadmap ==
 Long term plans.
