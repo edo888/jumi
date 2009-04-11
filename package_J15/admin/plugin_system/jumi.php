@@ -79,10 +79,10 @@ class plgSystemJumi extends JPlugin
 		global $mainframe;
 		$docu	=& JFactory::getDocument();
 		$docuType = $docu->getType(); //feed, html, pdf
-		if ( $docuType == 'feed' && isset( $docu->items ) ) { // then replace it with some text
+		if ( $docuType == 'feed' && isset( $docu->items ) ) { // if feed then replace it with empty string
 			for ( $i = 0; $i <= count( $docu->items ); $i++ ) {
 				if ( isset( $docu->items[$i]->description ) ) {
-					$docu->items[$i]->description = preg_replace( $this->regex, 'Here is the Jumi feed code', $docu->items[$i]->description, 1 );
+					$docu->items[$i]->description = preg_replace( $this->regex, '', $docu->items[$i]->description, 1 );
 				}
 			}
 		}		
