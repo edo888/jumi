@@ -41,7 +41,8 @@ class plgSystemJumi extends JPlugin
 	  $nested = $this->pluginParams->get('nested_replace');
 
 		//Clear the Jumi code and syntax from the article in the frontend? If yes then clear and end
-		if ($this->getClearing( $this->pluginParams->get( 'clear_code'), $this->getGroupIdFromType($article->usertype) )) {
+		$aagid = (!isset($article->usertype)) ? $this->getGroupIdFromType('Administrator') : $this->getGroupIdFromType($article->usertype); //for Sections and Categories desc article author is set to Admin by default
+		if ($this->getClearing( $this->pluginParams->get( 'clear_code'), $aagid )) {
 			$article->text = preg_replace( $this->regex, '', $article->text );
 			return true;
 		}
