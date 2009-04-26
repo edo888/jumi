@@ -3,8 +3,8 @@ Developer's web pages: http://edo.webmaster.am
 Downloads and guides: http://jumi.vedeme.cz
 Tips and tricks: http://edo.webmaster.am/jumi
 ================================
-Version 2.1.0 beta
-Release date: 2009/04/07
+Version 2.1.0 beta2
+Release date: 2009/04/26
 ================================
 This package contains the following extensions:
     - Jumi component
