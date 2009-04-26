@@ -1,0 +1,43 @@
+Jumi package for Joomla 1.5
+Developer's web pages: http://edo.webmaster.am
+Downloads and guides: http://jumi.vedeme.cz
+Tips and tricks: http://edo.webmaster.am/jumi
+================================
+Version 2.1.0 beta2
+Release date: 2009/04/26
+================================
+This package contains the following extensions:
+    - Jumi component
+    - Jumi system plugin
+    - Jumi editor-xtd (button) plugin
+		- Jumi system router plugin
+    - Jumi module
+
+Installation/uninstallation instructions:
+Install Jumi package as a standard Joomla! extension. All extensions contained in the package are installed automatically. Jumi plugins are automatically set to "Enabled".
+Uninstallation of Jumi component also deletes Jumi component database table and uninstalls all other Jumi extensions (Jumi module and all three Jumi plugins).
+
+Upgrades from previous versions:
+It is recommended to uninstall all previous versions of any Jumi extension and install this one.
+(If you want to spare your Jumi component database table don't forget to make a backup of it before uninstallation. After the installation of new version restore the Jumi database table from the backup.) 
+
+Main changes:
+    - Jumi content plugin has changed into the system plugin.
+    - Jumi plugin includes the code not only into article now, but also into section and category descriptions.
+		- Codes included via Jumi plugin are rendered in PDF articles.
+    - Jumi plugin clears Jumi syntax from feeds.
+    - Jumi plugin syntax has changed to {jumi stored_code_source}code_written{/jumi}.
+    - Jumi plugin processes custom codes added directly into Joomla! content by accompanied Jumi editor-xtd plugin (editor button).
+    - Added Jumi editor-xtd plugin (editor button) that encodes/decodes code_written.
+    - For security reasons added Filtering option by article author user groups. Filtered code is not shown.
+    - Jumi Root (Default Absolute Jumi Path) for referencing included files is shared between all Jumi extensions.
+    - Added Debug mode parameter to plugin and module. If Debug is set to No then no Jumi error messages are shown in the frontend; in case of Jumi error you will see nothing instead.
+
+================================
+Demo
+There are several demos there. All of them are installed automatically. Any one is accessible by any Jumi extension.
+Component demo: there are two component demos in Jumi table of your Joomla! database. The first one, Hello Jumi!, is automatically assign the main menu item. The second one, Blogspot, can be accessed through the previous demo or you can assign to it a menu item manually - by a standard Joomla! manner.
+Module demo file: modules/mod_jumi/jumi_demo.php
+Plugin demo file: plugins/system/jumi/jumi_demo.php
+================================
+
