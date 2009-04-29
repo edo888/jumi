@@ -9,7 +9,7 @@ Ideas for immediate implementation.
 
 == Next release improvements ==
 Good ideas but for the next release.
-  * Uninstall/install component. An uninstall component option: drop or leave Jumi database table. An install If: if database table exists then leave it else create new and insert demo.
+  * Uninstall/install component. An uninstall component option: drop or leave Jumi database table. An install If: if database table exists then leave it else create new and insert demo. The same applies to menu items pointing to Jumi applications. It is connected to uninstall.jumi.sql. How to jump over it or switch to empty one?
 
 == Roadmap ==
 Long term plans.
