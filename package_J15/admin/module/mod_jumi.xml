@@ -16,7 +16,7 @@
         <filename>helper.php</filename>
         <filename>jumi_demo.php</filename>
         <filename>tmpl/default.php</filename>
- 	      <filename>tmpl/info.php</filename>
+        <filename>tmpl/info.php</filename>
         <filename>tmpl/index.html</filename>
     </files>
 
@@ -24,7 +24,7 @@
         <language tag="en-GB">en-GB.mod_jumi.ini</language>
     </languages>
 
-  	<params addpath="/modules/mod_jumi/tmpl">
+    <params addpath="/modules/mod_jumi/tmpl">
         <param name="notepad" type="textarea" default="" label="Notepad" description="PARAMNOTES" cols="60" rows="3" />
         <param name="@spacer" type="spacer" default="" label="" description="" />
         <param name="code_written" type="textarea" default="" label="Code written" description="PARAMCODEWRITTEN" cols="60" rows="17" />
@@ -40,9 +40,9 @@
             <option value="0">No caching</option>
         </param>
         <param name="cache_time" type="text" default="900" label="Cache Time" description="PARAMMODULECACHETIME" />
-    		<param name="debug_mode" type="radio" default="0" label="Debug mode" description="PARAMDEBUGMODE">
-						<option value="0">No</option>
-        		<option value="1">Yes</option>
+        <param name="debug_mode" type="radio" default="0" label="Debug mode" description="PARAMDEBUGMODE">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
         </param>
     </params>
 </install>
