@@ -40,7 +40,7 @@
     </uninstall>
 
     <url>
-        <linkparts name="fileid" type="sql" default="1" label="FILE" query="SELECT id, title FROM #__jumi" key_field="id" value_field="title" description="PARAMFILE" />
+        <linkparts name="fileid" label="FILE" type="text" default="1" size="6" description="PARAMFILE" />
     </url>
 
     <administration>
