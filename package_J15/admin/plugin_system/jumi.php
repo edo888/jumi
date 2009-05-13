@@ -62,6 +62,7 @@ class plgSystemJumi extends JPlugin
 					ob_start();
 					eval("?>".$output);
 					$output = str_replace( '$' , '\$' , ob_get_contents()); //fixed joomla bug
+					$output = str_replace( '\0' , '\\\\0' , ob_get_contents()); //fixed php bug. Not sure if there is no side effect of the fix.
 					ob_end_clean();
 					$article->text = preg_replace($this->regex, $output, $article->text, 1);
 				}
