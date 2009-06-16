@@ -10,7 +10,7 @@ defined("_VALID_MOS") or die("Restricted access");
 
 global $database, $mainframe;
 
-$fileid = mosGetParam($_REQUEST, 'fileid', '');
+$fileid = (int) mosGetParam($_REQUEST, 'fileid', '');
 $user   = $mainframe->getUser();
 
 $database->setQuery("select * from #__jumi where id = '{$fileid}' and access <= {$user->gid} and published = 1");

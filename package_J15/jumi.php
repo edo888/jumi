@@ -8,7 +8,7 @@
 
 defined("_JEXEC") or die("Restricted access");
 
-$fileid      = JRequest::getVar('fileid');
+$fileid      = JRequest::getInt('fileid');
 $database    = &JFactory::getDBO();
 $user        = &JFactory::getUser();
 $document    = &JFactory::getDocument();
