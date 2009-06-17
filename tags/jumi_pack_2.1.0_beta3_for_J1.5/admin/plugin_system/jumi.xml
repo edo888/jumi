@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="system">
+    <name>System - Jumi</name>
+    <author>Martin Hajek</author>
+    <creationDate>June 2009</creationDate>
+    <copyright>Copyright (c) 2006 - 2009 Martin Hajek. All rights reserved.</copyright>
+    <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+    <authorEmail>admin@vedeme.cz</authorEmail>
+    <authorUrl>http://jumi.vedeme.cz</authorUrl>
+    <version>2.1.0 beta3</version>
+    <description>JUMIPLUGINDESC</description>
+
+    <files>
+        <filename plugin="jumi">jumi.php</filename>
+        <filename>jumi/jumi_demo.php</filename>
+        <filename>jumi/class.jumicoder.php</filename>
+        <filename>jumi/info.php</filename>
+        <filename>jumi/index.html</filename>
+    </files>
+
+    <languages folder="language">
+        <language tag="en-GB">en-GB.plg_system_jumi.ini</language>
+    </languages>
+
+    <params addpath="/plugins/system/jumi">
+        <param name="@info" type="info" default="" label="Jumi root info" description="PARAMJUMIROOTDESC" myvar="PARAMJUMIROOTSET" />
+        <param name="jumi_root" type="text" size ="80" default="" label="Jumi root" description="PARAMJUMIROOTINPUT" />
+        <param type="spacer" default="" />
+        <param name="nested_replace" type="radio" default="0" label="Nested replace" description="PARAMNESTED">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </param>
+        <param name="debug_mode" type="radio" default="0" label="Debug mode" description="PARAMDEBUGMODE">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </param>
+        <param name="clear_code" type="list" default="0" label="Stop/Clear Jumi" description="PARAMCLEARJUMI">
+            <option value="0">SELECTIVELY by an article author Filter group (recommended)</option>
+            <option value="1">in ALL articles (just for temporary usage)</option>
+            <option value="2">in NO articles (rather risky)</option>
+        </param>
+    </params>
+</install>
