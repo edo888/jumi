@@ -1,0 +1,29 @@
+Jumi package for Joomla 1.0
+Developer's web pages: http://edo.webmaster.am
+Downloads and guides: http://jumi.vedeme.cz
+Tips and tricks: http://edo.webmaster.am/jumi
+================================
+Version 2.0.e
+Release date: 2009/6/17
+================================
+This package contains the following Jumi custom code extensions: component, content plugin, module.
+If upgrading from Jumi 2.0.e then it is sufficient to substitute components/com_jumi/jumi.php by jumi.php that can be found at the top of the instalation package.
+
+
+Installation instructions:
+Install Jumi package as a standard Joomla! 1.0 component.
+All extensions contained in the package are installed automatically.
+
+Changes from previous version:
+    - fixed vulnerability thread of the component
+
+================================
+Demo
+There are several demos there. All of them are installed automatically. Any one is accessible by any Jumi extension.
+    - Component demo: there are two component demos there. The first one, Hello Jumi!, is automatically assign
+the main menu item nad published. The second one, Blogspot, can be accessed through the previous demo or you can assign to it a menu item manually - by a standard Joomla! manner.
+    - Module demo file: modules/mod_jumi/jumi_demo.php
+    - Plugin demo file: mambots/content/jumi/jumi_demo.php
+================================
+Remarks:
+    - uninstallation of Jumi component uninstalls Jumi module and Jumi plugin as well.
