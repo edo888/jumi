@@ -2,12 +2,12 @@
 <mosinstall type="mambot" group="content">
     <name>Jumi</name>
     <author>Martin Hajek</author>
-    <creationDate>February 2009</creationDate>
+    <creationDate>June 2009</creationDate>
     <copyright>(C) 2006 - 2009 Martin Hajek. All rights reserved.</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>admin@vedeme.cz</authorEmail>
     <authorUrl>http://jumi.vedeme.cz</authorUrl>
-    <version>2.0.d</version>
+    <version>2.0.e</version>
     <description><![CDATA[<p>This content plugin includes into Joomla! articles custom script: from a file or from Jumi component database record.</p><p><b>Usage: {jumi [stored_code_source] [arg1] [arg2] ... [argN]}</b><br />where</p><ul><li><b>stored_code_source</b><br />is a filepathname to be included or ID of Jumi componet databese table record.<br />The filepathname is a relative one with respect to Default Absolute Path that can be set in the plugin parameters. If not set then is equivalent to Joomla! root.<br />The record ID must be preceeded by an asterrisk (e.g. *4).</li><li><b>[arg1] ... [argN]</b><br />are optional jumi arguments. It depends on your custom included php file if it can handle them. Arguments can be accessed by $jumi[] array in an included php file.</li></ul><p>Example of file inclusion + arguments:  {jumi [plugin/content/jumi/jumi_demo.php][first][second]}</p><p>Example of component database record inclusion:  {jumi [*1]}</p><p>There is also a compatible Jumi module and a component.</p><p>Additional information and resources: <a href="http://jumi.vedeme.cz">Downloads & guides</a>, <a href="http://edo.webmaster.am/jumi">Tips & tricks</a>.</p>]]></description>
 
     <files>
