@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
 
-class com_JumiInstallerScript {
+class com_jumiInstallerScript {
 
     /**
      * method to install the component
@@ -14,21 +14,21 @@ class com_JumiInstallerScript {
 
         // installing module
         $module_installer = new JInstaller;
-        if($module_installer->install(dirname(__FILE__).DS.'module'))
+        if($module_installer->install(dirname(__FILE__).DS.'admin'.DS.'module'))
             echo 'Module install success', '<br />';
         else
             echo 'Module install failed', '<br />';
 
         // installing plugin
         $plugin_installer = new JInstaller;
-        if($plugin_installer->install(dirname(__FILE__).DS.'plugin'))
+        if($plugin_installer->install(dirname(__FILE__).DS.'admin'.DS.'plugin'))
             echo 'Plugin install success', '<br />';
         else
             echo 'Plugin install failed', '<br />';
 
         // installing router
         $plugin_installer = new JInstaller;
-        if($plugin_installer->install(dirname(__FILE__).DS.'router'))
+        if($plugin_installer->install(dirname(__FILE__).DS.'admin'.DS.'router'))
             echo 'Router install success', '<br />';
         else
             echo 'Router install failed', '<br />';
@@ -52,7 +52,7 @@ class com_JumiInstallerScript {
         // $parent is the class calling this method
         //echo '<p>' . JText::_('COM_HELLOWORLD_UNINSTALL_TEXT') . '</p>';
 
-        $uninstaller = new InstallerController;
+        $db =& JFactory::getDBO();
 
         // uninstalling jumi module
         $db->setQuery("select id from #__modules where title = 'Jumi'");
