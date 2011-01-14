@@ -35,11 +35,11 @@ class com_jumiInstallerScript {
 
         // enabling plugin
         $db =& JFactory::getDBO();
-        $db->setQuery('update #__plugins set published = 1 where element = "jumi" and folder = "content"');
+        $db->setQuery('update #__extensions set enabled = 1 where element = "jumi" and folder = "content"');
         $db->query();
 
         // enabling router
-        $db->setQuery('update #__plugins set published = 1, ordering = 100 where element = "jumirouter" and folder = "system"');
+        $db->setQuery('update #__extensions set enabled = 1, ordering = 100 where element = "jumirouter" and folder = "system"');
         $db->query();
     }
 
@@ -55,28 +55,30 @@ class com_jumiInstallerScript {
         $db =& JFactory::getDBO();
 
         // uninstalling jumi module
-        $db->setQuery("select id from #__modules where title = 'Jumi'");
+        $db->setQuery("select extension_id from #__extensions where name = 'Jumi' and type = 'module' and element = 'mod_jumi'");
         $jumi_module = $db->loadObject();
         $module_uninstaller = new JInstaller;
-        if($module_uninstaller->uninstall('module', $jumi_module->id))
+        if($module_uninstaller->uninstall('module', $jumi_module->extension_id))
             echo 'Module uninstall success', '<br />';
-        else
+        else {
             echo 'Module uninstall failed', '<br />';
+            exit;
+        }
 
         // uninstalling jumi plugin
-        $db->setQuery("select id from #__plugins where name = 'Jumi'");
+        $db->setQuery("select extension_id from #__extensions where name = 'Jumi' and type = 'plugin' and element = 'jumi'");
         $jumi_plugin = $db->loadObject();
         $plugin_uninstaller = new JInstaller;
-        if($plugin_uninstaller->uninstall('plugin', $jumi_plugin->id))
+        if($plugin_uninstaller->uninstall('plugin', $jumi_plugin->extension_id))
             echo 'Plugin uninstall success', '<br />';
         else
             echo 'Plugin uninstall failed', '<br />';
 
         // uninstalling jumi router
-        $db->setQuery("select id from #__plugins where name = 'System - Jumi Router'");
+        $db->setQuery("select extension_id from #__extensions where name = 'System - Jumi Router' and type = 'plugin' and element = 'jumirouter'");
         $jumi_router = $db->loadObject();
         $plugin_uninstaller = new JInstaller;
-        if($plugin_uninstaller->uninstall('plugin', $jumi_router->id))
+        if($plugin_uninstaller->uninstall('plugin', $jumi_router->extension_id))
             echo 'Router uninstall success', '<br />';
         else
             echo 'Router uninstall failed', '<br />';
