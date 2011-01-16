@@ -39,7 +39,7 @@
     </url>
 
     <administration>
-        <menu img="components/com_jumi/images/jumi.png">Jumi</menu>
+        <menu img="components/com_jumi/images/jumi.png">COM_JUMI_MENU</menu>
         <files folder="admin">
             <filename>admin.jumi.php</filename>
             <filename>toolbar.jumi.html.php</filename>
@@ -52,12 +52,13 @@
             <folder>plugin</folder>
             <folder>router</folder>
         </files>
-        <languages folder="admin/language">
-            <language tag="en-GB">en-GB.com_jumi.ini</language>
-            <language tag="ru-RU">ru-RU.com_jumi.ini</language>
-            <language tag="cs-CZ">cs-CZ.com_jumi.ini</language>
-            <language tag="hy-AM">hy-AM.com_jumi.ini</language>
-            <language tag="es-ES">es-ES.com_jumi.ini</language>
+        <languages folder="admin">
+            <language tag="en-GB">language/en-GB/en-GB.com_jumi.ini</language>
+            <language tag="en-GB">language/en-GB/en-GB.com_jumi.sys.ini</language>
+            <language tag="ru-RU">language/ru-RU/ru-RU.com_jumi.ini</language>
+            <language tag="cs-CZ">language/cs_CZ/cs-CZ.com_jumi.ini</language>
+            <language tag="hy-AM">language/hy-AM/hy-AM.com_jumi.ini</language>
+            <language tag="es-ES">language/es-ES/es-ES.com_jumi.ini</language>
         </languages>
     </administration>
 </extension>
