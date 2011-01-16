@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="plugin" group="content" version="1.6.0" method="upgrade">
-    <name>Jumi</name>
+<extension type="plugin" group="system" version="1.6" method="upgrade">
+    <name>System - Jumi</name>
     <author>Edvard Ananyan</author>
     <creationDate>January 2011</creationDate>
     <copyright>Copyright (c) 2006 - 2010 Martin Hajek, 2011 Edvard Ananyan. All rights reserved.</copyright>

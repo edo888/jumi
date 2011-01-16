@@ -9,31 +9,35 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Import library dependencies
+jimport('joomla.plugin.plugin');
 jimport('joomla.event.plugin');
 
-class plgContentJumi extends JPlugin {
-    function plgContentJumi( &$subject ) {
+class plgSystemJumi extends JPlugin {
+    function __construct( &$subject ) {
       parent::__construct( $subject );
       // load plugin parameters and language file
-      $this->_plugin = JPluginHelper::getPlugin( 'content', 'jumi' );
+      $this->_plugin = JPluginHelper::getPlugin( 'system', 'jumi' );
       $this->_params = json_decode( $this->_plugin->params );
-      JPlugin::loadLanguage('plg_content_jumi', JPATH_ADMINISTRATOR);
+      JPlugin::loadLanguage('plg_system_jumi', JPATH_ADMINISTRATOR);
     }
 
-    function onContentPrepare($context, &$row, &$params, $page = 0) {
-      // just startup
+    function onAfterRender() {
       $mainframe = &JFactory::getApplication();
+      if($mainframe->isAdmin())
+        return;
+
       $plugin =& JPluginHelper::getPlugin('content', 'jumi');
       $pluginParams = json_decode( $plugin->params );
-      $article =& $row;
+
+      $content = JResponse::getBody();
 
       //print_r($pluginParams);exit;
 
       // expression to search for
-      $regex = '/{(jumi)\s*(.*?)}/i'; //BUG: des not work with written codes containing }
+      $regex = '/{(jumi)\s*(.*?)}/i'; //BUG: des not work with written codes containing
         // if hide_code then replace jumi syntax codes with an empty string
         if ( $pluginParams->hide_code == 1 ) {
-            $article->text = preg_replace( $regex, '', $article->text );
+            $content = preg_replace( $regex, '', $content );
             return true;
         }
 
@@ -41,7 +45,7 @@ class plgContentJumi extends JPlugin {
         while ($continuesearching){  //Nesting loop
             // find all instances of $regex (i.e. jumi) in an article and put them in $matches
             $matches = array();
-            $matches_found = preg_match_all( $regex, $article->text, $matches, PREG_SET_ORDER );
+            $matches_found = preg_match_all( $regex, $content, $matches, PREG_SET_ORDER );
             if ($matches_found) {
                 // cycle through all jumi instancies. Put text into $dummy[2]
                 foreach ($matches as $dummy) {
@@ -85,7 +89,7 @@ class plgContentJumi extends JPlugin {
                 }
 
                 // final replacement of $regex (i.e. {jumi [][]}) in $article->text by $output
-                    $article->text = preg_replace($regex, $output, $article->text, 1);
+                    $content = preg_replace($regex, $output, $content, 1);
                 }
                 if ($pluginParams->nested_replace == 0) {
                     $continuesearching = false;
@@ -94,7 +98,8 @@ class plgContentJumi extends JPlugin {
                 $continuesearching = false;
             }
         }
-        return true;
+
+        JResponse::setBody($content);
     }
 
     function getCodeStored($source) { //returns code stored in the database or null.
