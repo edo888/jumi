@@ -52,14 +52,16 @@ class JumiController extends JController {
         $where   = (count($where) ? ' WHERE ' . implode( ' AND ', $where ) : '' );
         $orderby = ' ORDER BY '. $filter_order .' '. $filter_order_Dir;
 
-        $query = 'SELECT COUNT(m.id) FROM #__jumi as m left join #__groups as g on (m.access = g.id) '.$where;
+        //$query = 'SELECT COUNT(m.id) FROM #__jumi as m left join #__groups as g on (m.access = g.id) '.$where;
+        $query = 'SELECT COUNT(m.id) FROM #__jumi as m '.$where;
         $db->setQuery($query);
         $total = $db->loadResult();
 
         jimport('joomla.html.pagination');
         $pageNav = new JPagination($total,$limitstart,$limit);
 
-        $query = 'SELECT m.*, g.name as groupname FROM #__jumi as m left join #__groups as g on (m.access = g.id)  '.$where.' '.$orderby;
+        //$query = 'SELECT m.*, g.name as groupname FROM #__jumi as m left join #__groups as g on (m.access = g.id)  '.$where.' '.$orderby;
+        $query = 'SELECT m.*, \'depracated\' as groupname FROM #__jumi as m '.$where.' '.$orderby;
         $db->setQuery($query,$pageNav->limitstart,$pageNav->limit);
         $rows = $db->loadObjectList();
 
@@ -152,7 +154,7 @@ class JumiController extends JController {
 
         $db      = &JFactory::getDBO();
         $cid     = JRequest::getVar( 'cid', array(), '', 'array' );
-        $publish = ( $this->_task == 'publish' ? 1 : 0 );
+        $publish = JRequest::getCmd('task') == 'publish' ? 1 : 0;
         $option  = JRequest::getVar( 'option', 'com_jumi', '', 'string' );
         $catid   = JRequest::getVar( 'catid', array(0), 'post', 'array' );
 
@@ -187,20 +189,6 @@ class JumiController extends JController {
 
         $mainframe->redirect( 'index.php?option='. $option );
     }
-
-    /*
-    function cancelApplication()
-    {
-        global $option;
-
-        $id   = JRequest::getVar( 'id', 0, '', 'int' );
-        $db   =& JFactory::getDBO();
-        $row  =& JTable::getInstance('poll', 'Table');
-
-        $row->checkin( $id );
-        $this->setRedirect( 'index.php?option='. $option );
-    }
-    */
 }
 
 
@@ -246,9 +234,9 @@ class JumiView {
                     <th width="8%" align="center">
                         <?php echo JHTML::_('grid.sort', 'Published', 'm.published', @$lists['order_Dir'], @$lists['order']); ?>
                     </th>
-                    <th width="12%" align="center">
+                    <!--th width="12%" align="center">
                         <?php echo JHTML::_('grid.sort', 'Access', 'g.name', @$lists['order_Dir'], @$lists['order']); ?>
-                    </th>
+                    </th-->
                     <th width="1%" nowrap="nowrap">
                         <?php echo JHTML::_('grid.sort', 'ID', 'm.id', @$lists['order_Dir'], @$lists['order']); ?>
                     </th>
@@ -261,7 +249,8 @@ class JumiView {
 
                 $link        = JRoute::_('index.php?option=com_jumi&task=edit&cid[]='. $row->id);
                 $checked     = JHTML::_('grid.checkedout',$row,$i);
-                $published   = JHTML::_('grid.published',$row,$i);
+                //$published   = JHTML::_('grid.published',$row,$i);
+                $published   = JHtml::_('jgrid.published', $row->published, $i);
                 $accesslevel = JHTML::_('grid.access',$row,$i);
                 ?>
                 <tr class="<?php echo "row$k"; ?>">
@@ -281,9 +270,9 @@ class JumiView {
                     <td align="center">
                         <?php echo $published; ?>
                     </td>
-                    <td align="center">
+                    <!--td align="center">
                         <?php echo $accesslevel; ?>
-                    </td>
+                    </td-->
                     <td align="center">
                         <?php echo $row->id; ?>
                     </td>
@@ -300,7 +289,6 @@ class JumiView {
             </table>
         </div>
 
-        <input type="hidden" name="option" value="<?php echo $option;?>" />
         <input type="hidden" name="task" value="" />
         <input type="hidden" name="boxchecked" value="0" />
         <input type="hidden" name="filter_order" value="<?php echo $lists['order']; ?>" />
@@ -325,9 +313,9 @@ class JumiView {
 
             // validation
             if(form.title.value == "")
-                alert( "<?php echo JText::_('NEEDTITLE', true ); ?>" );
+                alert( "<?php echo JText::_('COM_JUMI_NEEDTITLE', true ); ?>" );
             else if(form.custom_script.value == "" && form.path.value == "")
-                alert( "<?php echo JText::_('NEEDSCRIPT', true ); ?>" );
+                alert( "<?php echo JText::_('COM_JUMI_NEEDSCRIPT', true ); ?>" );
             else
                 submitform(pressbutton);
         }
@@ -335,13 +323,13 @@ class JumiView {
         <form action="index.php" method="post" name="adminForm">
 
         <fieldset class="adminform">
-            <legend><?php echo JText::_('DETAILS'); ?></legend>
+            <legend><?php echo JText::_('COM_JUMI_DETAILS'); ?></legend>
 
             <table class="admintable">
             <tr>
                 <td width="200" class="key">
                     <label for="title">
-                        <?php echo JText::_( 'TITLE' ); ?>:
+                        <?php echo JText::_( 'COM_JUMI_TITLE' ); ?>:
                     </label>
                 </td>
                 <td>
@@ -361,7 +349,7 @@ class JumiView {
             <tr>
                 <td class="key">
                     <label for="custom_script">
-                        <?php echo JHTML::_('tooltip', JTEXT::_('CUSTOMSCRIPT')); ?> <?php echo JText::_( 'Custom Script' ); ?>:
+                        <?php echo JHTML::_('tooltip', JTEXT::_('COM_JUMI_CUSTOMSCRIPT')); ?> <?php echo JText::_( 'COM_JUMI_CUSTOM_SCRIPT' ); ?>:
                     </label>
                 </td>
                 <td>
@@ -372,7 +360,7 @@ class JumiView {
                 <td class="key">
 
                     <label for="path">
-                        <?php echo JHTML::_('tooltip', JTEXT::_('INCLFILE')); ?> <?php echo JText::_( 'Pathname' ); ?>:
+                        <?php echo JHTML::_('tooltip', JTEXT::_('COM_JUMI_INCLFILE')); ?> <?php echo JText::_( 'COM_JUMI_PATHNAME' ); ?>:
                     </label>
                 </td>
                 <td>
