@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="1.6" method="upgrade">
-    <name>Jumi</name>
+    <name>com_jumi</name>
     <author>Edvard Ananyan</author>
     <creationDate>January 2011</creationDate>
     <copyright>Copyright (c) 2008 - 2011 Edvard Ananyan. All rights reserved.</copyright>
@@ -12,11 +12,12 @@
 
     <files>
         <filename>jumi.php</filename>
+        <filename>controller.php</filename>
         <filename>router.php</filename>
         <filename>index.html</filename>
         <filename>release_notes.txt</filename>
-        <filename>files/blogger.php</filename>
-        <filename>files/index.html</filename>
+        <folder>files</folder>
+        <folder>views</folder>
     </files>
 
     <scriptfile>scriptfile.php</scriptfile>

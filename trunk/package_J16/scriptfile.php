@@ -62,7 +62,6 @@ class com_jumiInstallerScript {
             echo 'Module uninstall success', '<br />';
         else {
             echo 'Module uninstall failed', '<br />';
-            exit;
         }
 
         // uninstalling jumi plugin
