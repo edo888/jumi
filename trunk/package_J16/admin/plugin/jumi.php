@@ -20,21 +20,25 @@ class plgContentJumi extends JPlugin {
       JPlugin::loadLanguage('plg_content_jumi', JPATH_ADMINISTRATOR);
     }
 
-    function onPrepareContent(&$article, &$params, $limitstart) {
+    function onContentPrepare($context, &$row, &$params, $page = 0) {
       // just startup
       $mainframe = &JFactory::getApplication();
       $plugin =& JPluginHelper::getPlugin('content', 'jumi');
       $pluginParams = json_decode( $plugin->params );
+      $article =& $row;
+
+      //print_r($pluginParams);exit;
+
       // expression to search for
       $regex = '/{(jumi)\s*(.*?)}/i'; //BUG: des not work with written codes containing }
         // if hide_code then replace jumi syntax codes with an empty string
-        if ( $pluginParams->get( 'hide_code') == 1 ) {
+        if ( $pluginParams->hide_code == 1 ) {
             $article->text = preg_replace( $regex, '', $article->text );
             return true;
         }
 
         $continuesearching = true;
-    while ($continuesearching){  //Nesting loop
+        while ($continuesearching){  //Nesting loop
             // find all instances of $regex (i.e. jumi) in an article and put them in $matches
             $matches = array();
             $matches_found = preg_match_all( $regex, $article->text, $matches, PREG_SET_ORDER );
@@ -52,7 +56,7 @@ class plgContentJumi extends JPlugin {
                     }
 
                 //Following syntax {jumi [storage_source][arg1]...[argN]}
-                    $storage_source = $this->getStorageSource(trim(array_shift($jumi)), $pluginParams->def('default_absolute_path',JPATH_ROOT)); //filepathname or record id or ""
+                    $storage_source = $this->getStorageSource(trim(array_shift($jumi)), $pluginParams->default_absolute_path); //filepathname or record id or ""
                     $output = ''; // Jumi output
 
                     if($storage_source == '') { //if nothing to show
@@ -83,7 +87,7 @@ class plgContentJumi extends JPlugin {
                 // final replacement of $regex (i.e. {jumi [][]}) in $article->text by $output
                     $article->text = preg_replace($regex, $output, $article->text, 1);
                 }
-                if ($pluginParams->get('nested_replace') == 0) {
+                if ($pluginParams->nested_replace == 0) {
                     $continuesearching = false;
                 }
             } else {
@@ -107,7 +111,10 @@ class plgContentJumi extends JPlugin {
             if ($id = substr(strchr($storage,"*"),1)) { //if record id return it
                 return (int)$id;
             } else { // else return filepathname
-                return $abspath.DS.$storage;
+                if($abspath == '')
+                    return $storage;
+                else
+                    return $abspath.DS.$storage;
             }
         } else { // else return ""
             return '';
