@@ -16,7 +16,7 @@ class plgContentJumi extends JPlugin {
       parent::__construct( $subject );
       // load plugin parameters and language file
       $this->_plugin = JPluginHelper::getPlugin( 'content', 'jumi' );
-      $this->_params = new JParameter( $this->_plugin->params );
+      $this->_params = json_decode( $this->_plugin->params );
       JPlugin::loadLanguage('plg_content_jumi', JPATH_ADMINISTRATOR);
     }
 
@@ -24,7 +24,7 @@ class plgContentJumi extends JPlugin {
       // just startup
       $mainframe = &JFactory::getApplication();
       $plugin =& JPluginHelper::getPlugin('content', 'jumi');
-      $pluginParams = new JParameter( $plugin->params );
+      $pluginParams = json_decode( $plugin->params );
       // expression to search for
       $regex = '/{(jumi)\s*(.*?)}/i'; //BUG: des not work with written codes containing }
         // if hide_code then replace jumi syntax codes with an empty string
