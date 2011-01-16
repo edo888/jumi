@@ -35,7 +35,7 @@ class com_jumiInstallerScript {
 
         // enabling plugin
         $db =& JFactory::getDBO();
-        $db->setQuery('update #__extensions set enabled = 1 where element = "jumi" and folder = "content"');
+        $db->setQuery('update #__extensions set enabled = 1 where element = "jumi" and folder = "system"');
         $db->query();
 
         // enabling router
@@ -65,7 +65,7 @@ class com_jumiInstallerScript {
         }
 
         // uninstalling jumi plugin
-        $db->setQuery("select extension_id from #__extensions where name = 'Jumi' and type = 'plugin' and element = 'jumi'");
+        $db->setQuery("select extension_id from #__extensions where name = 'System - Jumi' and type = 'plugin' and element = 'jumi'");
         $jumi_plugin = $db->loadObject();
         $plugin_uninstaller = new JInstaller;
         if($plugin_uninstaller->uninstall('plugin', $jumi_plugin->extension_id))
