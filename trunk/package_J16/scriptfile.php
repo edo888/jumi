@@ -1,4 +1,11 @@
 <?php
+/**
+* @version   $Id$
+* @package   Jumi
+* @copyright Copyright (C) 2006 - 2011 Edvard Ananyan, Simon Poghosyan. All rights reserved.
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
+*/
+
 defined('_JEXEC') or die('Restricted access');
 
 class com_jumiInstallerScript {
@@ -14,7 +21,7 @@ class com_jumiInstallerScript {
 
         // installing module
         $module_installer = new JInstaller;
-        if($module_installer->install(dirname(__FILE__).DS.'admin'.DS.'module'))
+        if(@$module_installer->install(dirname(__FILE__).DS.'admin'.DS.'module'))
             echo 'Module install success', '<br />';
         else
             echo 'Module install failed', '<br />';
@@ -58,7 +65,7 @@ class com_jumiInstallerScript {
         $db->setQuery("select extension_id from #__extensions where name = 'Jumi' and type = 'module' and element = 'mod_jumi'");
         $jumi_module = $db->loadObject();
         $module_uninstaller = new JInstaller;
-        if($module_uninstaller->uninstall('module', $jumi_module->extension_id))
+        if(@$module_uninstaller->uninstall('module', $jumi_module->extension_id))
             echo 'Module uninstall success', '<br />';
         else {
             echo 'Module uninstall failed', '<br />';
