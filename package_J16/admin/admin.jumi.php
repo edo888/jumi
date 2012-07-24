@@ -26,7 +26,7 @@ class JumiController extends JController {
     function showApplications() {
         $mainframe =& JFactory::getApplication();
         global $option;
-
+        $option = JRequest::getCMD('option');
         $db               = &JFactory::getDBO();
         $filter_order     = $mainframe->getUserStateFromRequest("$option.filter_order",'filter_order','m.id');
         $filter_order_Dir = $mainframe->getUserStateFromRequest("$option.filter_order_Dir",'filter_order_Dir','');
